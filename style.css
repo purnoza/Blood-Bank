@@ -1,0 +1,512 @@
+/* =========================
+   Blood Bank Management System
+   Complete CSS
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Arial, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    color:#333;
+}
+
+/* =========================
+   INDEX / ACTOR DASHBOARD
+========================= */
+
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:40px 20px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.header h1{
+    color:#b71c1c;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.header p{
+    color:#666;
+    font-size:18px;
+}
+
+.actors{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+}
+
+.actor-card{
+    background:#fff;
+    border-radius:16px;
+    padding:30px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    transition:0.3s;
+}
+
+.actor-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 25px rgba(0,0,0,0.18);
+}
+
+.actor-card .icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.actor-card h2{
+    color:#b71c1c;
+    margin-bottom:10px;
+}
+
+.actor-card p{
+    color:#666;
+    line-height:1.6;
+}
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+#loginPage{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:linear-gradient(135deg,#8B0000,#C62828);
+}
+
+.login-box{
+    background:#fff;
+    width:420px;
+    padding:35px;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.login-box h2{
+    text-align:center;
+    color:#b71c1c;
+    margin-bottom:25px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus{
+    border-color:#b71c1c;
+    outline:none;
+    box-shadow:0 0 8px rgba(183,28,28,0.2);
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    background:#b71c1c;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#8e0000;
+}
+
+.link{
+    text-align:center;
+    margin-top:15px;
+}
+
+.link a{
+    color:#b71c1c;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.link a:hover{
+    text-decoration:underline;
+}
+
+#error{
+    color:red;
+    text-align:center;
+    margin-top:10px;
+    display:none;
+}
+
+/* =========================
+   DASHBOARD LAYOUT
+========================= */
+
+#dashboardPage{
+    display:none;
+}
+
+.sidebar{
+    width:260px;
+    background:#b71c1c;
+    color:#fff;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:25px;
+    font-size:24px;
+}
+
+.sidebar a{
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    padding:12px 15px;
+    border-radius:8px;
+    margin-bottom:6px;
+    transition:0.3s;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:#8e0000;
+}
+
+.main{
+    margin-left:260px;
+    padding:25px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.topbar h1{
+    color:#b71c1c;
+}
+
+.user-info{
+    font-weight:600;
+    color:#555;
+}
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#fff;
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    color:#666;
+    font-size:16px;
+}
+
+.card p{
+    font-size:28px;
+    color:#b71c1c;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* =========================
+   CONTENT SECTIONS
+========================= */
+
+.section{
+    display:none;
+    background:#fff;
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.section.active{
+    display:block;
+}
+
+.section h2{
+    color:#b71c1c;
+    margin-bottom:20px;
+}
+
+/* =========================
+   TABLES
+========================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+table th,
+table td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:left;
+}
+
+table th{
+    background:#b71c1c;
+    color:#fff;
+}
+
+table tr:nth-child(even){
+    background:#f9f9f9;
+}
+
+table tr:hover{
+    background:#f1f1f1;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.action-btn{
+    padding:10px 18px;
+    border:none;
+    border-radius:6px;
+    color:#fff;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.action-btn.add{
+    background:#2e7d32;
+}
+
+.action-btn.edit{
+    background:#1976d2;
+}
+
+.action-btn.delete{
+    background:#d32f2f;
+}
+
+.action-btn.accept{
+    background:#388e3c;
+}
+
+.action-btn.reject{
+    background:#d32f2f;
+}
+
+.action-btn.warning{
+    background:#f57c00;
+}
+
+.action-btn:hover{
+    opacity:0.9;
+}
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+.notification{
+    background:#ffebee;
+    border-left:5px solid #b71c1c;
+    padding:15px;
+    border-radius:8px;
+    margin:15px 0;
+}
+
+.notification.success{
+    background:#e8f5e9;
+    border-left-color:#2e7d32;
+}
+
+.notification.warning{
+    background:#fff8e1;
+    border-left-color:#f57c00;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.badge{
+    padding:5px 10px;
+    border-radius:20px;
+    color:#fff;
+    font-size:13px;
+    font-weight:600;
+}
+
+.badge.available{
+    background:#2e7d32;
+}
+
+.badge.pending{
+    background:#f57c00;
+}
+
+.badge.approved{
+    background:#388e3c;
+}
+
+.badge.rejected{
+    background:#d32f2f;
+}
+
+.badge.expired{
+    background:#616161;
+}
+
+/* =========================
+   REPORT BUTTONS
+========================= */
+
+.report-buttons{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+.report-buttons button{
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#b71c1c;
+    color:#fff;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.report-buttons button:hover{
+    background:#8e0000;
+}
+
+/* =========================
+   SETTINGS FORM
+========================= */
+
+.settings-form{
+    max-width:600px;
+}
+
+.settings-form .input-group{
+    margin-bottom:20px;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media(max-width:992px){
+
+.sidebar{
+    width:220px;
+}
+
+.main{
+    margin-left:220px;
+}
+
+}
+
+@media(max-width:768px){
+
+.sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+}
+
+.main{
+    margin-left:0;
+}
+
+.topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.cards{
+    grid-template-columns:1fr;
+}
+
+.login-box{
+    width:90%;
+}
+
+}
+
+@media(max-width:480px){
+
+.header h1{
+    font-size:30px;
+}
+
+.actor-card{
+    padding:20px;
+}
+
+}
