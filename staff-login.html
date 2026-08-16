@@ -4,677 +4,899 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blood Bank Staff Panel</title>
-<style>
-<style>
-/* =====================================================
-   BLOOD BANK STAFF PANEL CSS
-===================================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f9;
-    color: #222;
-    min-height: 100vh;
+body{
+    background:#f4f6f9;
+    color:#222;
+    min-height:100vh;
 }
 
-/* ================= LOGIN / REGISTER ================= */
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
 
+button{
+    cursor:pointer;
+}
+
+/* LOGIN & REGISTER */
 #loginPage,
-#registerPage {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #8b0000, #d32f2f);
-    padding: 20px;
+#registerPage{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#8b0000,#d32f2f);
+    padding:20px;
 }
 
 #registerPage,
-#dashboardPage {
-    display: none;
+#dashboardPage{
+    display:none;
 }
 
-.login-box,
-.register-box {
-    width: 440px;
-    max-width: 95%;
-    background: #fff;
-    padding: 30px;
-    border-radius: 14px;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+/* AUTH BOX */
+.auth-box{
+    width:440px;
+    max-width:95%;
+    background:#fff;
+    padding:30px;
+    border-radius:14px;
+    box-shadow:0 10px 35px rgba(0,0,0,.25);
 }
 
-.login-box h2,
-.register-box h2 {
-    text-align: center;
-    color: #a00000;
-    margin-bottom: 25px;
+.auth-box h2{
+    text-align:center;
+    color:#a00000;
+    margin-bottom:25px;
 }
 
-/* ================= INPUT ================= */
-
-.input-group {
-    margin-bottom: 16px;
+.input-group{
+    margin-bottom:16px;
 }
 
-.input-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 7px;
+.input-group label{
+    display:block;
+    font-weight:600;
+    margin-bottom:7px;
 }
 
 input,
 select,
-textarea {
-    width: 100%;
-    padding: 11px 13px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font-size: 15px;
-    outline: none;
-    background: #fff;
+textarea{
+    width:100%;
+    padding:11px 13px;
+    border:1px solid #ccc;
+    border-radius:7px;
+    font-size:15px;
+    outline:none;
+    background:#fff;
 }
 
 input:focus,
 select:focus,
-textarea:focus {
-    border-color: #c62828;
-    box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.1);
+textarea:focus{
+    border-color:#c62828;
+    box-shadow:0 0 0 2px rgba(198,40,40,.1);
 }
 
-/* ================= BUTTONS ================= */
-
-.btn {
-    width: 100%;
-    border: 0;
-    padding: 12px 18px;
-    border-radius: 7px;
-    background: #b71c1c;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 7px;
+/* BUTTONS */
+.btn{
+    border:0;
+    padding:11px 16px;
+    border-radius:7px;
+    background:#b71c1c;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    margin:4px 3px;
 }
 
-.btn:hover {
-    background: #8e0000;
+.btn:hover{
+    background:#8e0000;
 }
 
-.back-btn {
-    width: 100%;
-    margin-top: 12px;
-    padding: 11px;
-    border: 1px solid #b71c1c;
-    border-radius: 7px;
-    background: #fff;
-    color: #b71c1c;
-    cursor: pointer;
+.btn.full{
+    width:100%;
+    margin:5px 0;
 }
 
-.back-btn:hover {
-    background: #fff0f0;
+.btn.green{
+    background:#2e7d32;
 }
 
-.link {
-    text-align: center;
-    margin-top: 18px;
+.btn.green:hover{
+    background:#1b5e20;
 }
 
-.link a {
-    color: #b71c1c;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
+.btn.blue{
+    background:#1565c0;
 }
 
-.link a:hover {
-    text-decoration: underline;
+.btn.blue:hover{
+    background:#0d47a1;
 }
 
-.error {
-    display: none;
-    color: #d00000;
-    text-align: center;
-    margin: 12px 0;
-    font-size: 14px;
+.btn.orange{
+    background:#ef6c00;
 }
 
-/* ================= SIDEBAR ================= */
-
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 245px;
-    height: 100vh;
-    background: #8b0000;
-    color: #fff;
-    padding: 22px 15px;
-    overflow-y: auto;
+.btn.orange:hover{
+    background:#e65100;
 }
 
-.sidebar h2 {
-    text-align: center;
-    margin-bottom: 22px;
+.btn.gray{
+    background:#757575;
 }
 
-.sidebar a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    padding: 12px 14px;
-    margin: 5px 0;
-    border-radius: 7px;
-    cursor: pointer;
+.btn.gray:hover{
+    background:#555;
 }
 
-.sidebar a:hover {
-    background: rgba(255, 255, 255, 0.15);
+.btn.red{
+    background:#c62828;
 }
 
-.sidebar a.active {
-    background: #fff;
-    color: #8b0000;
-    font-weight: 600;
+.btn.red:hover{
+    background:#8e0000;
 }
 
-/* ================= MAIN ================= */
-
-.main {
-    margin-left: 245px;
-    min-height: 100vh;
+/* BACK BUTTON */
+.back-btn{
+    width:100%;
+    margin-top:12px;
+    padding:11px;
+    border:1px solid #b71c1c;
+    border-radius:7px;
+    background:#fff;
+    color:#b71c1c;
+    cursor:pointer;
 }
 
-.topbar {
-    height: 75px;
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+.back-btn:hover{
+    background:#fff0f0;
 }
 
-.topbar h1 {
-    font-size: 25px;
-    color: #8b0000;
+/* LINK */
+.link{
+    text-align:center;
+    margin-top:18px;
 }
 
-.topbar b {
-    color: #8b0000;
+.link a{
+    color:#b71c1c;
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:none;
 }
 
-/* ================= SECTIONS ================= */
-
-.section {
-    display: none;
-    padding: 30px;
+.link a:hover{
+    text-decoration:underline;
 }
 
-.section.active {
-    display: block;
+.error{
+    display:none;
+    color:#d00000;
+    text-align:center;
+    margin:12px 0;
+    font-size:14px;
 }
 
-.section h2 {
-    color: #8b0000;
-    margin-bottom: 22px;
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:245px;
+    height:100vh;
+    background:#8b0000;
+    color:#fff;
+    padding:22px 15px;
+    overflow-y:auto;
 }
 
-/* ================= CARDS ================= */
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 18px;
-    margin-bottom: 25px;
+.sidebar h2{
+    text-align:center;
+    margin-bottom:22px;
 }
 
-.card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-    border-left: 5px solid #b71c1c;
+.sidebar a{
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    padding:12px 14px;
+    margin:5px 0;
+    border-radius:7px;
+    cursor:pointer;
 }
 
-.card h3 {
-    color: #555;
-    font-size: 14px;
-    margin-bottom: 10px;
+.sidebar a:hover{
+    background:rgba(255,255,255,.15);
 }
 
-.card p {
-    color: #8b0000;
-    font-size: 28px;
-    font-weight: bold;
+.sidebar a.active{
+    background:#fff;
+    color:#8b0000;
+    font-weight:600;
 }
 
-/* ================= FORM ================= */
-
-.form-container {
-    background: #fff;
-    padding: 22px;
-    border-radius: 10px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-    margin-bottom: 22px;
-    max-width: 700px;
+/* MAIN */
+.main{
+    margin-left:245px;
+    min-height:100vh;
 }
 
-/* ================= TABLE ================= */
+/* TOP BAR */
+.topbar{
+    height:75px;
+    background:#fff;
+    border-bottom:1px solid #ddd;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    margin-top: 15px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+.topbar h1{
+    font-size:25px;
+    color:#8b0000;
+}
+
+.topbar b{
+    color:#8b0000;
+}
+
+/* SECTIONS */
+.section{
+    display:none;
+    padding:30px;
+}
+
+.section.active{
+    display:block;
+}
+
+.section h2{
+    color:#8b0000;
+    margin-bottom:22px;
+}
+
+/* DASHBOARD CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#fff;
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+    border-left:5px solid #b71c1c;
+}
+
+.card h3{
+    color:#555;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#8b0000;
+    font-size:28px;
+    font-weight:bold;
+}
+
+/* FORM */
+.form-container{
+    background:#fff;
+    padding:22px;
+    border-radius:10px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+    margin-bottom:22px;
+    max-width:750px;
+}
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    max-width:900px;
+}
+
+/* TABLE */
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+    margin-top:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+    min-width:760px;
 }
 
 th,
-td {
-    padding: 11px 10px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
+td{
+    padding:11px 10px;
+    text-align:left;
+    border-bottom:1px solid #eee;
+    font-size:14px;
 }
 
-thead {
-    background: #8b0000;
-    color: #fff;
+thead{
+    background:#8b0000;
+    color:#fff;
 }
 
-th {
-    white-space: nowrap;
+th{
+    white-space:nowrap;
 }
 
-/* ================= ACTION BUTTONS ================= */
-
-.action {
-    border: 0;
-    padding: 7px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    margin: 2px;
+/* ACTION BUTTONS */
+.action{
+    border:0;
+    padding:7px 10px;
+    border-radius:5px;
+    cursor:pointer;
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    margin:2px;
 }
 
-.accept {
-    background: #2e7d32;
+.action.green{
+    background:#2e7d32;
 }
 
-.accept:hover {
-    background: #1b5e20;
+.action.blue{
+    background:#1565c0;
 }
 
-.reject {
-    background: #c62828;
+.action.red{
+    background:#c62828;
 }
 
-.reject:hover {
-    background: #8e0000;
+.action.gray{
+    background:#757575;
 }
 
-.update {
-    background: #1565c0;
+.action.orange{
+    background:#ef6c00;
 }
 
-.update:hover {
-    background: #0d47a1;
-}
-
-.remove {
-    background: #757575;
-}
-
-.remove:hover {
-    background: #555;
-}
-
-/* ================= STATUS ================= */
-
+/* STATUS */
 .available,
 .safe,
-.completed {
-    color: #2e7d32;
-    font-weight: 700;
+.completed{
+    color:#2e7d32;
+    font-weight:700;
 }
 
-.pending {
-    color: #ef6c00;
-    font-weight: 700;
+.pending,
+.warning{
+    color:#ef6c00;
+    font-weight:700;
 }
 
-.approved {
-    color: #1565c0;
-    font-weight: 700;
+.approved{
+    color:#1565c0;
+    font-weight:700;
 }
 
 .rejected,
 .unsafe,
-.expired {
-    color: #c62828;
-    font-weight: 700;
+.expired,
+.cancelled{
+    color:#c62828;
+    font-weight:700;
 }
 
-.warning {
-    color: #ef6c00;
-    font-weight: 700;
+/* NOTIFICATION */
+.notification{
+    background:#fff;
+    border-left:5px solid #b71c1c;
+    padding:15px 18px;
+    margin-bottom:12px;
+    border-radius:7px;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
 }
 
-/* ================= NOTIFICATION ================= */
-
-.notification {
-    background: #fff;
-    border-left: 5px solid #b71c1c;
-    padding: 15px 18px;
-    margin-bottom: 12px;
-    border-radius: 7px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+.notification b{
+    color:#8b0000;
 }
 
-.notification b {
-    color: #8b0000;
+/* OTHER */
+.empty{
+    text-align:center;
+    color:#777;
+    padding:20px;
 }
 
-/* ================= PROFILE ================= */
-
-.profile-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+.small-note{
+    color:#666;
+    margin:8px 0 15px;
 }
 
-.small-note {
-    color: #666;
-    margin: 8px 0 15px;
+.notice{
+    background:#fff5f5;
+    border:1px solid #ef9a9a;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:18px;
 }
 
-/* ================= SCROLLBAR ================= */
-
-.sidebar::-webkit-scrollbar {
-    width: 6px;
+.request-card{
+    background:#fff;
+    border-left:5px solid #c62828;
+    padding:18px;
+    border-radius:8px;
+    margin-bottom:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
 }
 
-.sidebar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.35);
-    border-radius: 10px;
+.request-card h3{
+    color:#8b0000;
+    margin-bottom:10px;
 }
 
-/* ================= RESPONSIVE ================= */
+.request-card p{
+    margin:6px 0;
+}
 
-@media (max-width: 800px) {
+.search-box{
+    max-width:400px;
+    margin:12px 0;
+}
 
-    .sidebar {
-        width: 205px;
+/* TABLET */
+@media(max-width:800px){
+
+    .sidebar{
+        width:205px;
     }
 
-    .main {
-        margin-left: 205px;
+    .main{
+        margin-left:205px;
     }
 
-    .profile-grid {
-        grid-template-columns: 1fr;
+    .profile-grid{
+        grid-template-columns:1fr;
     }
 }
 
-@media (max-width: 600px) {
+/* MOBILE */
+@media(max-width:600px){
 
-    .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
     }
 
-    .main {
-        margin-left: 0;
+    .main{
+        margin-left:0;
     }
 
-    .topbar {
-        position: relative;
-        height: auto;
-        padding: 18px;
-        gap: 8px;
-        flex-direction: column;
-        align-items: flex-start;
+    .topbar{
+        position:relative;
+        height:auto;
+        padding:18px;
+        gap:8px;
+        flex-direction:column;
+        align-items:flex-start;
     }
 
-    .section {
-        padding: 15px;
-        overflow-x: auto;
+    .section{
+        padding:15px;
+        overflow-x:auto;
     }
 
-    table {
-        min-width: 800px;
-    }
-
-    .profile-grid {
-        grid-template-columns: 1fr;
+    .profile-grid{
+        grid-template-columns:1fr;
     }
 }
 </style>
 </head>
+
 <body>
 
 <!-- LOGIN -->
 <div id="loginPage">
-<div class="login-box">
-<h2>Staff Login</h2>
-<div class="input-group"><label>Username</label><input id="loginUsername" type="text" autocomplete="off" placeholder="Enter Username"></div>
-<div class="input-group"><label>Password</label><input id="loginPassword" type="password" autocomplete="new-password" placeholder="Enter Password"></div>
-<div class="input-group"><label>Staff ID</label><input id="loginStaffId" type="text" autocomplete="off" placeholder="Enter Staff ID"></div>
-<button class="btn" onclick="login()">Login</button>
-<p id="loginError" class="error">Invalid username, password or Staff ID.</p>
-<div class="link"><a onclick="showRegister()">Create Staff Account</a></div>
-<button class="back-btn" onclick="goHome()">← Back</button>
-</div>
+    <div class="auth-box">
+        <h2>Staff Login</h2>
+
+        <div class="input-group">
+            <label>Username</label>
+            <input id="loginUsername" type="text" autocomplete="off" placeholder="Enter Username">
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input id="loginPassword" type="password" autocomplete="new-password" placeholder="Enter Password">
+        </div>
+
+        <div class="input-group">
+            <label>Staff ID</label>
+            <input id="loginStaffId" type="text" autocomplete="off" placeholder="Enter Staff ID">
+        </div>
+
+        <button class="btn full" onclick="login()">Login</button>
+        <p id="loginError" class="error">Invalid username, password or Staff ID.</p>
+
+        <div class="link"><a onclick="showRegister()">Create Staff Account</a></div>
+        <button class="back-btn" onclick="goHome()">← Back</button>
+    </div>
 </div>
 
 <!-- REGISTER -->
 <div id="registerPage">
-<div class="register-box">
-<h2>Create Staff Account</h2>
-<div class="input-group"><label>Staff ID</label><input id="registerStaffId" value="12345" readonly></div>
-<div class="input-group"><label>Full Name</label><input id="registerName" placeholder="Enter Full Name"></div>
-<div class="input-group"><label>Email</label><input id="registerEmail" type="email" placeholder="Enter Email"></div>
-<div class="input-group"><label>Phone</label><input id="registerPhone" placeholder="Enter Phone Number"></div>
-<div class="input-group"><label>Location</label><input id="registerLocation" placeholder="Enter Location"></div>
-<div class="input-group"><label>Username</label><input id="registerUsername" autocomplete="off" placeholder="Create Username"></div>
-<div class="input-group"><label>Password</label><input id="registerPassword" type="password" autocomplete="new-password" placeholder="Create Password"></div>
-<button class="btn" onclick="createStaffAccount()">Create Account</button>
-<button class="back-btn" onclick="backToLogin()">← Back to Login</button>
-</div>
+    <div class="auth-box">
+        <h2>Create Staff Account</h2>
+
+        <div class="input-group">
+            <label>Staff ID</label>
+            <input id="registerStaffId" value="12345" readonly>
+        </div>
+
+        <div class="input-group">
+            <label>Full Name</label>
+            <input id="registerName" placeholder="Enter Full Name">
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input id="registerEmail" type="email" placeholder="Enter Email">
+        </div>
+
+        <div class="input-group">
+            <label>Phone</label>
+            <input id="registerPhone" placeholder="Enter Phone Number">
+        </div>
+
+        <div class="input-group">
+            <label>Location</label>
+            <input id="registerLocation" placeholder="Enter Location">
+        </div>
+
+        <div class="input-group">
+            <label>Username</label>
+            <input id="registerUsername" autocomplete="off" placeholder="Create Username">
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input id="registerPassword" type="password" autocomplete="new-password" placeholder="Create Password">
+        </div>
+
+        <button class="btn full" onclick="createStaffAccount()">Create Account</button>
+        <button class="back-btn" onclick="backToLogin()">← Back to Login</button>
+    </div>
 </div>
 
 <!-- DASHBOARD -->
 <div id="dashboardPage">
-<div class="sidebar">
-<h2>Staff Panel</h2>
-<a class="active" onclick="showSection('dashboard',this)">Dashboard</a>
-<a onclick="showSection('profile',this)">Staff Profile</a>
-<a onclick="showSection('collection',this)">Blood Collection</a>
-<a onclick="showSection('screening',this)">Blood Screening</a>
-<a onclick="showSection('inventory',this)">Blood Inventory</a>
-<a onclick="showSection('requests',this)">Blood Requests</a>
-<a onclick="showSection('issue',this)">Issue Blood</a>
-<a onclick="showSection('eligibility',this)">Donor Eligibility</a>
-<a onclick="showSection('donation',this)">Donation Management</a>
-<a onclick="showSection('report',this)">Daily Inventory Report</a>
-<a onclick="showSection('notifications',this)">Notifications</a>
-<a onclick="logout()">Logout</a>
-</div>
 
-<div class="main">
-<div class="topbar"><h1>Staff Dashboard</h1><div>Welcome, <b id="staffWelcome">Staff</b></div></div>
+    <aside class="sidebar">
+        <h2>Staff Panel</h2>
+        <a class="active" onclick="showSection('dashboard',this)">Dashboard</a>
+        <a onclick="showSection('profile',this)">Staff Profile</a>
+        <a onclick="showSection('collection',this)">Blood Collection</a>
+        <a onclick="showSection('screening',this)">Blood Screening</a>
+        <a onclick="showSection('inventory',this)">Blood Inventory</a>
+        <a onclick="showSection('requests',this)">Blood Requests</a>
+        <a onclick="showSection('issue',this)">Issue Blood</a>
+        <a onclick="showSection('eligibility',this)">Donor Eligibility</a>
+        <a onclick="showSection('donation',this)">Donation Management</a>
+        <a onclick="showSection('report',this)">Daily Inventory Report</a>
+        <a onclick="showSection('notifications',this)">Notifications</a>
+        <a onclick="logout()">Logout</a>
+    </aside>
 
-<section id="dashboard" class="section active">
-<h2>Dashboard</h2>
-<div class="cards">
-<div class="card"><h3>Total Blood Units</h3><p id="totalBloodUnits">0</p></div>
-<div class="card"><h3>Available Blood Units</h3><p id="availableUnits">0</p></div>
-<div class="card"><h3>Blood Collected Today</h3><p id="collectedToday">0</p></div>
-<div class="card"><h3>Blood Issued Today</h3><p id="issuedToday">0</p></div>
-<div class="card"><h3>Expired Units</h3><p id="expiredUnits">0</p></div>
-<div class="card"><h3>Pending Requests</h3><p id="pendingRequests">0</p></div>
-<div class="card"><h3>Pending Screening</h3><p id="pendingScreening">0</p></div>
-<div class="card"><h3>Pending Donations</h3><p id="pendingDonations">0</p></div>
-</div>
-<div id="latestNotification" class="notification"><b>System:</b> Waiting for shared blood-bank activity.</div>
-</section>
+    <main class="main">
+        <div class="topbar">
+            <h1>Staff Dashboard</h1>
+            <div>Welcome, <b id="staffWelcome">Staff</b></div>
+        </div>
 
-<section id="profile" class="section">
-<h2>Staff Profile</h2>
-<div class="form-container profile-grid">
-<div class="input-group"><label>Staff ID</label><input id="profileStaffId" readonly></div>
-<div class="input-group"><label>Full Name</label><input id="profileName"></div>
-<div class="input-group"><label>Email</label><input id="profileEmail"></div>
-<div class="input-group"><label>Phone</label><input id="profilePhone"></div>
-<div class="input-group"><label>Location</label><input id="profileLocation"></div>
-</div>
-<button class="btn" style="max-width:250px" onclick="saveProfile()">Save Changes</button>
-</section>
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="section active">
+            <h2>Dashboard</h2>
 
-<section id="collection" class="section">
-<h2>Blood Collection</h2>
-<div class="form-container">
-<div class="input-group"><label>Donor Name</label><input id="collectionDonor" placeholder="Donor name"></div>
-<div class="input-group"><label>Blood Group</label><select id="collectionBlood"><option value="">Select</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
-<div class="input-group"><label>Collected Units</label><input id="collectionUnits" type="number" min="1"></div>
-<div class="input-group"><label>Collection Date</label><input id="collectionDate" type="date"></div>
-<button class="btn" onclick="addCollection()">Record Blood Collection</button>
-</div>
-<table><thead><tr><th>Donor</th><th>Blood</th><th>Units</th><th>Date</th><th>Status</th></tr></thead><tbody id="collectionBody"></tbody></table>
-</section>
+            <div class="cards">
+                <div class="card"><h3>Total Blood Units</h3><p id="totalBloodUnits">0</p></div>
+                <div class="card"><h3>Available Blood Units</h3><p id="availableUnits">0</p></div>
+                <div class="card"><h3>Blood Collected Today</h3><p id="collectedToday">0</p></div>
+                <div class="card"><h3>Blood Issued Today</h3><p id="issuedToday">0</p></div>
+                <div class="card"><h3>Expired Units</h3><p id="expiredUnits">0</p></div>
+                <div class="card"><h3>Pending Requests</h3><p id="pendingRequests">0</p></div>
+                <div class="card"><h3>Pending Screening</h3><p id="pendingScreening">0</p></div>
+                <div class="card"><h3>Pending Donations</h3><p id="pendingDonations">0</p></div>
+            </div>
 
-<section id="screening" class="section">
-<h2>Blood Screening</h2>
-<table><thead><tr><th>Donor</th><th>Blood</th><th>Units</th><th>Status</th><th>Action</th></tr></thead><tbody id="screeningBody"></tbody></table>
-</section>
+            <div id="latestNotification" class="notification">
+                <b>System:</b> Waiting for shared blood-bank activity.
+            </div>
+        </section>
 
-<section id="inventory" class="section">
-<h2>Blood Inventory</h2>
-<div class="form-container">
-<div class="input-group"><label>Blood Group</label><select id="inventoryBlood"><option value="">Select</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
-<div class="input-group"><label>Units</label><input id="inventoryUnits" type="number" min="1"></div>
-<div class="input-group"><label>Expiry Date</label><input id="inventoryExpiry" type="date"></div>
-<button class="btn" onclick="addInventory()">Add Blood Units</button>
-</div>
-<table><thead><tr><th>Blood</th><th>Units</th><th>Expiry</th><th>Status</th><th>Action</th></tr></thead><tbody id="inventoryBody"></tbody></table>
-</section>
+        <!-- PROFILE -->
+        <section id="profile" class="section">
+            <h2>Staff Profile</h2>
+            <div class="form-container profile-grid">
+                <div class="input-group"><label>Staff ID</label><input id="profileStaffId" readonly></div>
+                <div class="input-group"><label>Full Name</label><input id="profileName"></div>
+                <div class="input-group"><label>Email</label><input id="profileEmail" type="email"></div>
+                <div class="input-group"><label>Phone</label><input id="profilePhone"></div>
+                <div class="input-group"><label>Location</label><input id="profileLocation"></div>
+            </div>
+            <button class="btn" style="max-width:250px" onclick="saveProfile()">Save Changes</button>
+        </section>
 
-<section id="requests" class="section">
-<h2>Blood Request Verification</h2>
-<p class="small-note">Requests are read from the shared <b>bloodBankRequests</b> data used by the other actor pages.</p>
-<table><thead><tr><th>Recipient</th><th>Blood</th><th>Units</th><th>Hospital</th><th>Urgency</th><th>Status</th><th>Action</th></tr></thead><tbody id="requestBody"></tbody></table>
-</section>
+        <!-- COLLECTION -->
+        <section id="collection" class="section">
+            <h2>Blood Collection</h2>
 
-<section id="issue" class="section">
-<h2>Issue Blood</h2>
-<div class="form-container">
-<div class="input-group"><label>Recipient Name</label><input id="issueRecipient"></div>
-<div class="input-group"><label>Blood Group</label><select id="issueBlood"><option value="">Select</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
-<div class="input-group"><label>Issued Units</label><input id="issueUnits" type="number" min="1"></div>
-<div class="input-group"><label>Hospital</label><input id="issueHospital"></div>
-<button class="btn" onclick="issueBlood()">Issue Blood</button>
-</div>
-<div id="issueMessage"></div>
-</section>
+            <div class="form-container">
+                <div class="input-group"><label>Donor Name</label><input id="collectionDonor" placeholder="Enter donor name"></div>
+                <div class="input-group"><label>Blood Group</label>
+                    <select id="collectionBlood">
+                        <option value="">Select</option>
+                        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                    </select>
+                </div>
+                <div class="input-group"><label>Collected Units</label><input id="collectionUnits" type="number" min="1"></div>
+                <div class="input-group"><label>Collection Date</label><input id="collectionDate" type="date"></div>
+                <button class="btn" onclick="addCollection()">Record Blood Collection</button>
+            </div>
 
-<section id="eligibility" class="section">
-<h2>Donor Eligibility</h2>
-<table><thead><tr><th>Donor</th><th>Blood</th><th>Last Donation</th><th>Next Eligible</th><th>Status</th><th>Action</th></tr></thead><tbody id="eligibilityBody"></tbody></table>
-</section>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Donor</th><th>Blood</th><th>Units</th><th>Date</th><th>Screening</th><th>Status</th></tr></thead>
+                    <tbody id="collectionBody"></tbody>
+                </table>
+            </div>
+        </section>
 
-<section id="donation" class="section">
-<h2>Donation Management</h2>
-<table><thead><tr><th>Donor</th><th>Blood</th><th>Date</th><th>Units</th><th>Status</th><th>Action</th></tr></thead><tbody id="donationBody"></tbody></table>
-</section>
+        <!-- SCREENING -->
+        <section id="screening" class="section">
+            <h2>Blood Screening</h2>
+            <div class="notice">Only blood marked <b>Safe</b> is added to the shared inventory.</div>
 
-<section id="report" class="section">
-<h2>Daily Inventory Report</h2>
-<div class="cards">
-<div class="card"><h3>Total Collected</h3><p id="reportCollected">0</p></div>
-<div class="card"><h3>Total Screened</h3><p id="reportScreened">0</p></div>
-<div class="card"><h3>Safe Units</h3><p id="reportSafe">0</p></div>
-<div class="card"><h3>Issued Units</h3><p id="reportIssued">0</p></div>
-<div class="card"><h3>Expired Units</h3><p id="reportExpired">0</p></div>
-<div class="card"><h3>Available Stock</h3><p id="reportAvailable">0</p></div>
-</div>
-<button class="btn" style="max-width:250px" onclick="updateReport()">Update Daily Report</button>
-</section>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Donor</th><th>Blood</th><th>Units</th><th>Date</th><th>Screening</th><th>Action</th></tr></thead>
+                    <tbody id="screeningBody"></tbody>
+                </table>
+            </div>
+        </section>
 
-<section id="notifications" class="section">
-<h2>Notifications</h2>
-<div id="notificationList"></div>
-</section>
-</div>
+        <!-- INVENTORY -->
+        <section id="inventory" class="section">
+            <h2>Blood Inventory</h2>
+
+            <div class="form-container">
+                <div class="input-group"><label>Blood Group</label>
+                    <select id="inventoryBlood">
+                        <option value="">Select</option>
+                        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                    </select>
+                </div>
+                <div class="input-group"><label>Units</label><input id="inventoryUnits" type="number" min="1"></div>
+                <div class="input-group"><label>Expiry Date</label><input id="inventoryExpiry" type="date"></div>
+                <button class="btn" onclick="addInventory()">Add Blood Units</button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Blood</th><th>Units</th><th>Expiry</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody id="inventoryBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- REQUESTS -->
+        <section id="requests" class="section">
+            <h2>Blood Request Verification & Processing</h2>
+            <p class="small-note">
+                Requests are shared with the Recipient, Donor and Admin panels.
+                Admin approval is respected; Staff completes the process by issuing blood.
+            </p>
+
+            <input class="search-box" id="requestSearch" placeholder="Search recipient, blood group or hospital" oninput="renderRequests()">
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr><th>ID</th><th>Recipient</th><th>Blood</th><th>Units</th><th>Hospital</th><th>Urgency</th><th>Donor</th><th>Status</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="requestBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ISSUE -->
+        <section id="issue" class="section">
+            <h2>Issue Blood</h2>
+
+            <div class="notice">
+                Blood can be issued only when enough non-expired stock is available.
+                Issuing blood automatically reduces inventory and completes the matching request.
+            </div>
+
+            <div class="form-container">
+                <div class="input-group"><label>Request ID (optional)</label><input id="issueRequestId" placeholder="REQ-..."></div>
+                <div class="input-group"><label>Recipient Name</label><input id="issueRecipient"></div>
+                <div class="input-group"><label>Blood Group</label>
+                    <select id="issueBlood">
+                        <option value="">Select</option>
+                        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                    </select>
+                </div>
+                <div class="input-group"><label>Issued Units</label><input id="issueUnits" type="number" min="1"></div>
+                <div class="input-group"><label>Hospital / Blood Bank</label><input id="issueHospital"></div>
+                <button class="btn green" onclick="issueBlood()">Issue Blood</button>
+            </div>
+
+            <div id="issueMessage"></div>
+        </section>
+
+        <!-- ELIGIBILITY -->
+        <section id="eligibility" class="section">
+            <h2>Donor Eligibility</h2>
+            <p class="small-note">Eligibility is calculated from completed donations using the same 120-day prototype interval used by the Donor panel.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Donor</th><th>Blood</th><th>Last Donation</th><th>Next Eligible</th><th>Status</th></tr></thead>
+                    <tbody id="eligibilityBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- DONATIONS -->
+        <section id="donation" class="section">
+            <h2>Donation Management</h2>
+
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Donor</th><th>Blood</th><th>Date</th><th>Units</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody id="donationBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- REPORT -->
+        <section id="report" class="section">
+            <h2>Daily Inventory Report</h2>
+
+            <div class="cards">
+                <div class="card"><h3>Total Collected</h3><p id="reportCollected">0</p></div>
+                <div class="card"><h3>Total Screened</h3><p id="reportScreened">0</p></div>
+                <div class="card"><h3>Safe Units</h3><p id="reportSafe">0</p></div>
+                <div class="card"><h3>Issued Units</h3><p id="reportIssued">0</p></div>
+                <div class="card"><h3>Expired Units</h3><p id="reportExpired">0</p></div>
+                <div class="card"><h3>Available Stock</h3><p id="reportAvailable">0</p></div>
+            </div>
+
+            <button class="btn" style="max-width:250px" onclick="updateReport()">Update Daily Report</button>
+        </section>
+
+        <!-- NOTIFICATIONS -->
+        <section id="notifications" class="section">
+            <h2>Notifications</h2>
+            <div id="notificationList"></div>
+        </section>
+    </main>
 </div>
 
 <script>
 /* =========================================================
-   SHARED STORAGE
-   Every actor page must use the same keys/origin.
+   SHARED DATABASE
+   This is intentionally the same DB_KEY and structure used
+   by the Admin, Donor and Recipient pages.
 ========================================================= */
-const KEYS={
- account:"bloodBankStaffAccount",
- requests:"bloodBankRequests",
- inventory:"bloodBankInventory",
- collections:"bloodBankCollections",
- notifications:"bloodBankNotifications",
- donations:"bloodBankDonations",
- eligibility:"bloodBankDonorEligibility",
- issued:"bloodBankIssued"
-};
+const DB_KEY = "bloodBankDB";
+const CURRENT_STAFF_KEY = "currentStaffId";
 
-function get(key,fallback=[]){
-    try{return JSON.parse(localStorage.getItem(key)) ?? fallback}
-    catch(e){return fallback}
+function emptyDB(){
+    return {
+        donors:[],
+        recipients:[],
+        requests:[],
+        donations:[],
+        inventory:[],
+        bloodIssues:[],
+        notifications:[],
+        staff:[]
+    };
 }
-function set(key,value){localStorage.setItem(key,JSON.stringify(value))}
+
+function getDB(){
+    let db;
+    try{
+        db = JSON.parse(localStorage.getItem(DB_KEY) || "null");
+    }catch(e){
+        db = null;
+    }
+
+    if(!db) db = emptyDB();
+
+    db.donors = Array.isArray(db.donors) ? db.donors : [];
+    db.recipients = Array.isArray(db.recipients) ? db.recipients : [];
+    db.requests = Array.isArray(db.requests) ? db.requests : [];
+    db.donations = Array.isArray(db.donations) ? db.donations : [];
+    db.inventory = Array.isArray(db.inventory) ? db.inventory : [];
+    db.bloodIssues = Array.isArray(db.bloodIssues) ? db.bloodIssues : [];
+    db.notifications = Array.isArray(db.notifications) ? db.notifications : [];
+    db.staff = Array.isArray(db.staff) ? db.staff : [];
+
+    localStorage.setItem(DB_KEY,JSON.stringify(db));
+    return db;
+}
+
+function saveDB(db){
+    localStorage.setItem(DB_KEY,JSON.stringify(db));
+}
+
 function escapeHTML(value){
-    return String(value ?? "").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-}
-function addNotification(message){
-    const list=get(KEYS.notifications,[]);
-    list.unshift({message,date:new Date().toLocaleString()});
-    set(KEYS.notifications,list.slice(0,50));
+    return String(value ?? "").replace(/[&<>"']/g,m=>({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    }[m]));
 }
 
-/* Initial shared data */
-if(!localStorage.getItem(KEYS.inventory)){
-    set(KEYS.inventory,[
-        {blood:"A+",units:20,expiry:"2026-12-30"},
-        {blood:"O-",units:8,expiry:"2026-09-15"}
-    ]);
+function addNotification(role,message,extra={}){
+    const db = getDB();
+    db.notifications.unshift({
+        id:"NOT-"+Date.now()+"-"+Math.random().toString(16).slice(2),
+        role,
+        message,
+        date:new Date().toLocaleString(),
+        ...extra
+    });
+    db.notifications = db.notifications.slice(0,100);
+    saveDB(db);
 }
-if(!localStorage.getItem(KEYS.requests)) set(KEYS.requests,[]);
-if(!localStorage.getItem(KEYS.collections)) set(KEYS.collections,[]);
-if(!localStorage.getItem(KEYS.notifications)) set(KEYS.notifications,[]);
-if(!localStorage.getItem(KEYS.donations)) set(KEYS.donations,[]);
-if(!localStorage.getItem(KEYS.eligibility)) set(KEYS.eligibility,[]);
-if(!localStorage.getItem(KEYS.issued)) set(KEYS.issued,[]);
 
-/* Navigation */
-function goHome(){window.location.href="index.html"}
+/* =========================================================
+   NAVIGATION / AUTH
+========================================================= */
+function goHome(){
+    window.location.href = "index.html";
+}
+
 function showRegister(){
     document.getElementById("loginPage").style.display="none";
     document.getElementById("registerPage").style.display="flex";
     clearLogin();
 }
+
 function backToLogin(){
     document.getElementById("registerPage").style.display="none";
     document.getElementById("loginPage").style.display="flex";
+    clearLogin();
 }
+
 function clearLogin(){
     document.getElementById("loginUsername").value="";
     document.getElementById("loginPassword").value="";
@@ -682,349 +904,1017 @@ function clearLogin(){
     document.getElementById("loginError").style.display="none";
 }
 
-/* Create account */
-function createStaffAccount(){
-    const staffId=document.getElementById("registerStaffId").value.trim();
-    const name=document.getElementById("registerName").value.trim();
-    const email=document.getElementById("registerEmail").value.trim();
-    const phone=document.getElementById("registerPhone").value.trim();
-    const location=document.getElementById("registerLocation").value.trim();
-    const username=document.getElementById("registerUsername").value.trim();
-    const password=document.getElementById("registerPassword").value;
-
-    if(staffId!=="12345"){
-        alert("Staff ID must be 12345.");
-        return;
-    }
-    if(!name||!email||!phone||!location||!username||!password){
-        alert("Please fill all fields.");
-        return;
-    }
-
-    set(KEYS.account,{staffId,name,email,phone,location,username,password});
-    addNotification("New staff account created: "+name);
-
+function clearRegister(){
     document.getElementById("registerName").value="";
     document.getElementById("registerEmail").value="";
     document.getElementById("registerPhone").value="";
     document.getElementById("registerLocation").value="";
     document.getElementById("registerUsername").value="";
     document.getElementById("registerPassword").value="";
+}
 
-    alert("Staff account created successfully. Now login with your username, password and Staff ID 12345.");
+function getCurrentStaff(){
+    const id = localStorage.getItem(CURRENT_STAFF_KEY);
+    if(!id) return null;
+
+    const db = getDB();
+    return db.staff.find(s=>String(s.id)===String(id)) || null;
+}
+
+function createStaffAccount(){
+    const staffId = document.getElementById("registerStaffId").value.trim();
+    const name = document.getElementById("registerName").value.trim();
+    const email = document.getElementById("registerEmail").value.trim();
+    const phone = document.getElementById("registerPhone").value.trim();
+    const location = document.getElementById("registerLocation").value.trim();
+    const username = document.getElementById("registerUsername").value.trim();
+    const password = document.getElementById("registerPassword").value;
+
+    if(staffId !== "12345"){
+        alert("Staff ID must be 12345.");
+        return;
+    }
+
+    if(!name || !email || !phone || !location || !username || !password){
+        alert("Please fill all fields.");
+        return;
+    }
+
+    const db = getDB();
+
+    const duplicate = db.staff.find(s=>
+        s.username === username || String(s.id) === staffId
+    );
+
+    if(duplicate){
+        alert("A staff account with this Staff ID or username already exists.");
+        return;
+    }
+
+    const staff = {
+        id:staffId,
+        staffId,
+        name,
+        email,
+        phone,
+        location,
+        username,
+        password,
+        role:"Staff",
+        status:"Active",
+        createdAt:new Date().toISOString()
+    };
+
+    db.staff.push(staff);
+
+    db.notifications.unshift({
+        id:"NOT-"+Date.now(),
+        role:"admin",
+        userId:staffId,
+        message:"New staff account created: "+name+".",
+        date:new Date().toLocaleString()
+    });
+
+    saveDB(db);
+    clearRegister();
+
+    alert("Staff account created successfully. Login with your username, password and Staff ID 12345.");
     backToLogin();
 }
 
-/* Login */
 function login(){
-    const account=get(KEYS.account,null);
-    const u=document.getElementById("loginUsername").value.trim();
-    const p=document.getElementById("loginPassword").value;
-    const id=document.getElementById("loginStaffId").value.trim();
+    const username = document.getElementById("loginUsername").value.trim();
+    const password = document.getElementById("loginPassword").value;
+    const staffId = document.getElementById("loginStaffId").value.trim();
 
-    if(account && u===account.username && p===account.password && id===account.staffId){
-        document.getElementById("loginPage").style.display="none";
-        document.getElementById("registerPage").style.display="none";
-        document.getElementById("dashboardPage").style.display="block";
-        document.getElementById("loginError").style.display="none";
-        clearLogin();
-        loadProfile();
-        renderAll();
-    }else{
+    const db = getDB();
+
+    const staff = db.staff.find(s=>
+        String(s.id)===staffId &&
+        s.username===username &&
+        s.password===password &&
+        (s.status || "Active")==="Active"
+    );
+
+    if(!staff){
         document.getElementById("loginError").style.display="block";
+        return;
     }
+
+    localStorage.setItem(CURRENT_STAFF_KEY,staff.id);
+
+    document.getElementById("loginPage").style.display="none";
+    document.getElementById("registerPage").style.display="none";
+    document.getElementById("dashboardPage").style.display="block";
+    document.getElementById("loginError").style.display="none";
+
+    clearLogin();
+    loadProfile();
+    renderAll();
 }
 
-/* Logout: never leave username/password visible */
 function logout(){
+    localStorage.removeItem(CURRENT_STAFF_KEY);
     document.getElementById("dashboardPage").style.display="none";
     document.getElementById("registerPage").style.display="none";
     document.getElementById("loginPage").style.display="flex";
     clearLogin();
 }
 
-/* Sidebar */
 function showSection(id,el){
     document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
+    const section=document.getElementById(id);
+    if(section) section.classList.add("active");
+
     document.querySelectorAll(".sidebar a").forEach(a=>a.classList.remove("active"));
-    el.classList.add("active");
+    if(el) el.classList.add("active");
+
     renderAll();
 }
 
-/* Profile */
+/* =========================================================
+   PROFILE
+========================================================= */
 function loadProfile(){
-    const a=get(KEYS.account,null);
-    if(!a)return;
-    document.getElementById("profileStaffId").value=a.staffId||"12345";
-    document.getElementById("profileName").value=a.name||"";
-    document.getElementById("profileEmail").value=a.email||"";
-    document.getElementById("profilePhone").value=a.phone||"";
-    document.getElementById("profileLocation").value=a.location||"";
-    document.getElementById("staffWelcome").textContent=a.name||"Staff";
-}
-function saveProfile(){
-    const a=get(KEYS.account,null);
-    if(!a)return;
-    a.name=document.getElementById("profileName").value.trim();
-    a.email=document.getElementById("profileEmail").value.trim();
-    a.phone=document.getElementById("profilePhone").value.trim();
-    a.location=document.getElementById("profileLocation").value.trim();
-    if(!a.name||!a.email||!a.phone||!a.location){alert("Please fill all fields.");return}
-    set(KEYS.account,a);
-    loadProfile();
-    alert("Staff profile updated.");
+    const staff=getCurrentStaff();
+    if(!staff) return;
+
+    document.getElementById("profileStaffId").value=staff.id || "";
+    document.getElementById("profileName").value=staff.name || "";
+    document.getElementById("profileEmail").value=staff.email || "";
+    document.getElementById("profilePhone").value=staff.phone || "";
+    document.getElementById("profileLocation").value=staff.location || "";
+    document.getElementById("staffWelcome").textContent=staff.name || "Staff";
 }
 
-/* Collection */
+function saveProfile(){
+    const staff=getCurrentStaff();
+    if(!staff) return;
+
+    const db=getDB();
+    const name=document.getElementById("profileName").value.trim();
+    const email=document.getElementById("profileEmail").value.trim();
+    const phone=document.getElementById("profilePhone").value.trim();
+    const location=document.getElementById("profileLocation").value.trim();
+
+    if(!name || !email || !phone || !location){
+        alert("Please fill all profile fields.");
+        return;
+    }
+
+    staff.name=name;
+    staff.email=email;
+    staff.phone=phone;
+    staff.location=location;
+
+    saveDB(db);
+    loadProfile();
+
+    addNotification("admin","Staff profile updated: "+name+".",{userId:staff.id});
+    alert("Staff profile updated successfully.");
+}
+
+/* =========================================================
+   BLOOD COLLECTION
+========================================================= */
 function addCollection(){
-    const donor=document.getElementById("collectionDonor").value.trim();
+    const donorName=document.getElementById("collectionDonor").value.trim();
     const blood=document.getElementById("collectionBlood").value;
     const units=Number(document.getElementById("collectionUnits").value);
     const date=document.getElementById("collectionDate").value;
-    if(!donor||!blood||units<=0||!date){alert("Fill all collection fields.");return}
-    const arr=get(KEYS.collections,[]);
-    const item={id:Date.now(),donor,blood,units,date,status:"Collected"};
-    arr.push(item);set(KEYS.collections,arr);
-    addNotification(donor+" blood collection recorded: "+blood+" ("+units+" units).");
-    const donations=get(KEYS.donations,[]);
-    donations.push({id:Date.now(),donor,blood,date,units,status:"Pending"});
-    set(KEYS.donations,donations);
-    ["collectionDonor","collectionBlood","collectionUnits","collectionDate"].forEach(id=>document.getElementById(id).value="");
-    renderAll();alert("Blood collection recorded.");
+
+    if(!donorName || !blood || units<=0 || !date){
+        alert("Please fill all collection fields.");
+        return;
+    }
+
+    const db=getDB();
+
+    const donor=db.donors.find(d=>
+        String(d.name||"").toLowerCase()===donorName.toLowerCase()
+    );
+
+    const collection={
+        id:"COL-"+Date.now(),
+        donorId:donor ? donor.id : "",
+        donor:donorName,
+        blood,
+        units,
+        date,
+        status:"Collected",
+        screening:"Pending",
+        inventoryAdded:false,
+        createdAt:new Date().toISOString()
+    };
+
+    db.donations.push({
+        id:"DON-"+Date.now(),
+        donorId:donor ? donor.id : "",
+        donor:donorName,
+        blood,
+        date,
+        units,
+        hospital:"Blood Bank",
+        bloodBank:"Blood Bank",
+        status:"Pending",
+        collectionId:collection.id
+    });
+
+    if(!db.collections) db.collections=[];
+    db.collections.push(collection);
+
+    saveDB(db);
+
+    if(donor){
+        db.notifications.push({
+            id:"NOT-"+Date.now(),
+            role:"donor",
+            userId:donor.id,
+            message:"Your blood collection was recorded: "+blood+" ("+units+" unit(s)).",
+            date:new Date().toLocaleString()
+        });
+        saveDB(db);
+    }
+
+    ["collectionDonor","collectionBlood","collectionUnits","collectionDate"]
+        .forEach(id=>document.getElementById(id).value="");
+
+    renderAll();
+    alert("Blood collection recorded successfully.");
 }
 
-/* Screening */
+function getCollections(){
+    const db=getDB();
+    return Array.isArray(db.collections) ? db.collections : [];
+}
+
+function renderCollections(){
+    const body=document.getElementById("collectionBody");
+    const arr=getCollections();
+
+    if(!arr.length){
+        body.innerHTML='<tr><td colspan="6" class="empty">No collection records.</td></tr>';
+        return;
+    }
+
+    body.innerHTML=arr.slice().reverse().map(x=>`
+        <tr>
+            <td>${escapeHTML(x.donor)}</td>
+            <td>${escapeHTML(x.blood)}</td>
+            <td>${x.units}</td>
+            <td>${escapeHTML(x.date)}</td>
+            <td class="${x.screening==="Safe"?"safe":x.screening==="Unsafe"?"unsafe":"pending"}">
+                ${escapeHTML(x.screening||"Pending")}
+            </td>
+            <td class="completed">${escapeHTML(x.status||"Collected")}</td>
+        </tr>
+    `).join("");
+}
+
+/* =========================================================
+   BLOOD SCREENING
+========================================================= */
 function renderScreening(){
     const body=document.getElementById("screeningBody");
-    const arr=get(KEYS.collections,[]);
-    body.innerHTML=arr.length?arr.map(x=>`
+    const arr=getCollections();
+
+    if(!arr.length){
+        body.innerHTML='<tr><td colspan="6" class="empty">No collected blood available for screening.</td></tr>';
+        return;
+    }
+
+    body.innerHTML=arr.slice().reverse().map(x=>`
         <tr>
-        <td>${escapeHTML(x.donor)}</td><td>${escapeHTML(x.blood)}</td><td>${x.units}</td>
-        <td class="${x.screening==="Safe"?"safe":x.screening==="Unsafe"?"unsafe":"pending"}">${x.screening||"Pending"}</td>
-        <td>
-        <button class="action accept" onclick="screenBlood(${x.id},'Safe')">Safe</button>
-        <button class="action reject" onclick="screenBlood(${x.id},'Unsafe')">Unsafe</button>
-        </td></tr>`).join(""):"<tr><td colspan='5'>No collected blood.</td></tr>";
+            <td>${escapeHTML(x.donor)}</td>
+            <td>${escapeHTML(x.blood)}</td>
+            <td>${x.units}</td>
+            <td>${escapeHTML(x.date)}</td>
+            <td class="${x.screening==="Safe"?"safe":x.screening==="Unsafe"?"unsafe":"pending"}">
+                ${escapeHTML(x.screening||"Pending")}
+            </td>
+            <td>
+                ${
+                    x.screening==="Safe"
+                    ? '<span class="safe">Safe</span>'
+                    : x.screening==="Unsafe"
+                    ? '<span class="unsafe">Unsafe</span>'
+                    : `
+                        <button class="action green" onclick="screenBlood('${x.id}','Safe')">Safe</button>
+                        <button class="action red" onclick="screenBlood('${x.id}','Unsafe')">Unsafe</button>
+                    `
+                }
+            </td>
+        </tr>
+    `).join("");
 }
+
+function addSafeInventory(db,blood,units,expiry){
+    let item=db.inventory.find(x=>x.blood===blood && x.expiry===expiry);
+
+    if(item){
+        item.units=Number(item.units||0)+Number(units||0);
+    }else{
+        db.inventory.push({blood,units,expiry});
+    }
+}
+
+function futureDate(days){
+    const d=new Date();
+    d.setDate(d.getDate()+days);
+    return d.toISOString().slice(0,10);
+}
+
 function screenBlood(id,result){
-    const arr=get(KEYS.collections,[]);
-    const item=arr.find(x=>x.id===id);if(!item)return;
-    item.screening=result;set(KEYS.collections,arr);
+    const db=getDB();
+    if(!db.collections) db.collections=[];
+
+    const item=db.collections.find(x=>x.id===id);
+    if(!item) return;
+
+    if(item.screening==="Safe" || item.screening==="Unsafe"){
+        alert("This blood has already been screened.");
+        return;
+    }
+
+    item.screening=result;
+
+    const donor=db.donors.find(d=>String(d.id)===String(item.donorId));
+
     if(result==="Safe"){
-        const inv=get(KEYS.inventory,[]);
-        const existing=inv.find(x=>x.blood===item.blood);
-        if(existing)existing.units+=item.units;
-        else inv.push({blood:item.blood,units:item.units,expiry:futureDate(90)});
-        set(KEYS.inventory,inv);
-        addNotification("Screening SAFE: "+item.blood+" blood added to inventory.");
-    }else addNotification("Screening UNSAFE: "+item.blood+" blood must be removed.");
+        const expiry=futureDate(90);
+        addSafeInventory(db,item.blood,item.units,expiry);
+        item.inventoryAdded=true;
+
+        db.notifications.unshift({
+            id:"NOT-"+Date.now(),
+            role:"staff",
+            message:"SAFE screening completed for "+item.blood+" blood. "+item.units+" unit(s) added to inventory.",
+            date:new Date().toLocaleString()
+        });
+
+        if(donor){
+            db.notifications.unshift({
+                id:"NOT-"+Date.now()+"D",
+                role:"donor",
+                userId:donor.id,
+                message:"Your donated "+item.blood+" blood passed screening successfully.",
+                date:new Date().toLocaleString()
+            });
+        }
+    }else{
+        item.inventoryAdded=false;
+
+        db.notifications.unshift({
+            id:"NOT-"+Date.now(),
+            role:"staff",
+            message:"UNSAFE screening result for "+item.blood+" blood. "+item.units+" unit(s) were not added to inventory.",
+            date:new Date().toLocaleString()
+        });
+
+        if(donor){
+            db.notifications.unshift({
+                id:"NOT-"+Date.now()+"D",
+                role:"donor",
+                userId:donor.id,
+                message:"Your donated "+item.blood+" blood did not pass screening.",
+                date:new Date().toLocaleString()
+            });
+        }
+    }
+
+    saveDB(db);
     renderAll();
 }
 
-/* Inventory */
-function futureDate(days){
-    const d=new Date();d.setDate(d.getDate()+days);
-    return d.toISOString().slice(0,10);
-}
+/* =========================================================
+   INVENTORY
+========================================================= */
 function addInventory(){
     const blood=document.getElementById("inventoryBlood").value;
     const units=Number(document.getElementById("inventoryUnits").value);
     const expiry=document.getElementById("inventoryExpiry").value;
-    if(!blood||units<=0||!expiry){alert("Fill all inventory fields.");return}
-    const inv=get(KEYS.inventory,[]);
-    const existing=inv.find(x=>x.blood===blood);
-    if(existing){existing.units+=units;existing.expiry=expiry}
-    else inv.push({blood,units,expiry});
-    set(KEYS.inventory,inv);
-    addNotification("Inventory updated: "+blood+" +"+units+" units.");
+
+    if(!blood || units<=0 || !expiry){
+        alert("Please enter valid blood stock information.");
+        return;
+    }
+
+    const db=getDB();
+    const existing=db.inventory.find(x=>x.blood===blood && x.expiry===expiry);
+
+    if(existing) existing.units=Number(existing.units||0)+units;
+    else db.inventory.push({blood,units,expiry});
+
+    db.notifications.unshift({
+        id:"NOT-"+Date.now(),
+        role:"staff",
+        message:"Inventory updated: "+blood+" +"+units+" unit(s).",
+        date:new Date().toLocaleString()
+    });
+
+    saveDB(db);
+
     document.getElementById("inventoryBlood").value="";
     document.getElementById("inventoryUnits").value="";
     document.getElementById("inventoryExpiry").value="";
-    renderAll();alert("Blood stock added.");
+
+    renderAll();
+    alert("Blood stock added successfully.");
 }
+
 function renderInventory(){
     const body=document.getElementById("inventoryBody");
-    const inv=get(KEYS.inventory,[]);
-    const today=new Date();
-    body.innerHTML=inv.length?inv.map((x,i)=>{
-        const ex=new Date(x.expiry+"T23:59:59");
-        let st="Available",cl="available";
-        if(ex<today){st="Expired";cl="expired"}
-        else if(ex-today<7*86400000){st="Expiring Soon";cl="warning"}
-        return `<tr><td>${x.blood}</td><td>${x.units}</td><td>${x.expiry}</td><td class="${cl}">${st}</td>
-        <td><button class="action update" onclick="updateStock(${i})">Update</button>
-        <button class="action remove" onclick="removeExpired(${i})">Remove</button></td></tr>`
-    }).join(""):"<tr><td colspan='5'>No inventory.</td></tr>";
-}
-function updateStock(i){
-    const inv=get(KEYS.inventory,[]);
-    const q=prompt("Enter new quantity:",inv[i].units);
-    if(q===null)return;const n=Number(q);
-    if(!Number.isFinite(n)||n<0){alert("Invalid quantity.");return}
-    inv[i].units=n;set(KEYS.inventory,inv);renderAll();
-}
-function removeExpired(i){
-    const inv=get(KEYS.inventory,[]),x=inv[i];
-    if(!x)return;
-    if(new Date(x.expiry+"T23:59:59")>new Date()){alert("This blood has not expired.");return}
-    inv.splice(i,1);set(KEYS.inventory,inv);
-    addNotification("Expired "+x.blood+" blood removed.");
-    renderAll();alert("Expired blood removed.");
+    const db=getDB();
+
+    if(!db.inventory.length){
+        body.innerHTML='<tr><td colspan="5" class="empty">No inventory records.</td></tr>';
+        return;
+    }
+
+    const now=new Date();
+
+    body.innerHTML=db.inventory.map((x,i)=>{
+        const expiry=new Date((x.expiry||"")+"T23:59:59");
+        let status="Available",cl="available";
+
+        if(expiry<now){
+            status="Expired";
+            cl="expired";
+        }else if(expiry-now<7*86400000){
+            status="Expiring Soon";
+            cl="warning";
+        }
+
+        return `
+            <tr>
+                <td>${escapeHTML(x.blood)}</td>
+                <td>${Number(x.units||0)}</td>
+                <td>${escapeHTML(x.expiry||"-")}</td>
+                <td class="${cl}">${status}</td>
+                <td>
+                    <button class="action blue" onclick="updateStock(${i})">Update</button>
+                    <button class="action red" onclick="removeStock(${i})">Remove</button>
+                </td>
+            </tr>
+        `;
+    }).join("");
 }
 
-/* Requests shared with Recipient and Donor */
+function updateStock(index){
+    const db=getDB();
+    const item=db.inventory[index];
+    if(!item) return;
+
+    const value=prompt("Enter new quantity:",item.units);
+    if(value===null) return;
+
+    const units=Number(value);
+    if(!Number.isFinite(units) || units<0){
+        alert("Invalid quantity.");
+        return;
+    }
+
+    item.units=units;
+    saveDB(db);
+    renderAll();
+}
+
+function removeStock(index){
+    const db=getDB();
+    const item=db.inventory[index];
+    if(!item) return;
+
+    if(new Date((item.expiry||"")+"T23:59:59")>new Date()){
+        alert("This blood has not expired yet.");
+        return;
+    }
+
+    if(!confirm("Remove this expired blood stock?")) return;
+
+    db.inventory.splice(index,1);
+
+    db.notifications.unshift({
+        id:"NOT-"+Date.now(),
+        role:"staff",
+        message:"Expired "+item.blood+" blood stock was removed.",
+        date:new Date().toLocaleString()
+    });
+
+    saveDB(db);
+    renderAll();
+}
+
+/* =========================================================
+   REQUESTS
+========================================================= */
+function normalizeRequestBlood(request){
+    return request.blood || request.bloodGroup || "";
+}
+
+function normalizeRequestUnits(request){
+    return Number(request.units || request.requiredUnits || 0);
+}
+
+function requestStatusClass(status){
+    if(status==="Approved" || status==="Donor Accepted") return "approved";
+    if(status==="Completed" || status==="Issued") return "completed";
+    if(status==="Rejected" || status==="Cancelled") return "rejected";
+    return "pending";
+}
+
 function renderRequests(){
     const body=document.getElementById("requestBody");
-    const req=get(KEYS.requests,[]);
-    body.innerHTML=req.length?req.map(r=>`
-    <tr>
-    <td>${escapeHTML(r.recipientName||r.recipient||"Recipient")}</td>
-    <td>${escapeHTML(r.bloodGroup||r.blood||"")}</td>
-    <td>${r.units||r.requiredUnits||0}</td>
-    <td>${escapeHTML(r.hospital||r.location||"")}</td>
-    <td>${escapeHTML(r.urgency||"Normal")}</td>
-    <td class="${statusClass(r.status)}">${escapeHTML(r.status||"Pending")}</td>
-    <td>
-    ${["Pending","Donor Accepted"].includes(r.status)?`<button class="action accept" onclick="requestStatus(${r.id},'Approved')">Approve</button>
-    <button class="action reject" onclick="requestStatus(${r.id},'Rejected')">Reject</button>`:""}
-    ${["Approved","Donor Accepted"].includes(r.status)?`<button class="action update" onclick="requestStatus(${r.id},'Completed')">Complete</button>`:""}
-    </td></tr>`).join(""):"<tr><td colspan='7'>No blood requests yet. Create a request from the Recipient page first.</td></tr>";
-}
-function statusClass(s){
-    if(s==="Approved"||s==="Donor Accepted")return"approved";
-    if(s==="Completed"||s==="Issued")return"completed";
-    if(s==="Rejected"||s==="Cancelled")return"rejected";
-    return"pending";
-}
-function requestStatus(id,status){
-    const req=get(KEYS.requests,[]);
-    const r=req.find(x=>x.id===id);if(!r)return;
-    r.status=status;
-    set(KEYS.requests,req);
-    addNotification("Blood request for "+(r.bloodGroup||r.blood)+" changed to "+status+".");
-    renderAll();alert("Request status updated to "+status+".");
+    const db=getDB();
+    const search=(document.getElementById("requestSearch").value||"").trim().toLowerCase();
+
+    let requests=db.requests.slice().reverse();
+
+    if(search){
+        requests=requests.filter(r=>{
+            const text=[
+                r.id,
+                r.recipientName||r.recipient,
+                normalizeRequestBlood(r),
+                r.hospital,
+                r.location,
+                r.urgency,
+                r.donorName
+            ].join(" ").toLowerCase();
+
+            return text.includes(search);
+        });
+    }
+
+    if(!requests.length){
+        body.innerHTML='<tr><td colspan="9" class="empty">No blood requests found.</td></tr>';
+        return;
+    }
+
+    body.innerHTML=requests.map(r=>{
+        const status=r.status||"Pending";
+        const blood=normalizeRequestBlood(r);
+        const units=normalizeRequestUnits(r);
+        const canIssue=(status==="Approved" || status==="Donor Accepted") && units>0;
+
+        return `
+            <tr>
+                <td>${escapeHTML(r.id)}</td>
+                <td>${escapeHTML(r.recipientName||r.recipient||"-")}</td>
+                <td>${escapeHTML(blood)}</td>
+                <td>${units}</td>
+                <td>${escapeHTML(r.hospital||r.location||"-")}</td>
+                <td>${escapeHTML(r.urgency||"Normal")}</td>
+                <td>${escapeHTML(r.donorName||"No donor")}</td>
+                <td class="${requestStatusClass(status)}">${escapeHTML(status)}</td>
+                <td>
+                    ${
+                        canIssue
+                        ? `<button class="action green" onclick="prepareIssue('${String(r.id).replace(/'/g,"\\'")}')">Prepare Issue</button>`
+                        : status==="Pending"
+                        ? '<span class="pending">Waiting</span>'
+                        : status==="Completed"
+                        ? '<span class="completed">Completed</span>'
+                        : '<span>—</span>'
+                    }
+                </td>
+            </tr>
+        `;
+    }).join("");
 }
 
-/* Issue blood */
+function prepareIssue(requestId){
+    const db=getDB();
+    const request=db.requests.find(r=>String(r.id)===String(requestId));
+
+    if(!request){
+        alert("Request not found.");
+        return;
+    }
+
+    if(!["Approved","Donor Accepted"].includes(request.status)){
+        alert("This request is not ready for blood issue.");
+        return;
+    }
+
+    document.getElementById("issueRequestId").value=request.id;
+    document.getElementById("issueRecipient").value=request.recipientName||request.recipient||"";
+    document.getElementById("issueBlood").value=normalizeRequestBlood(request);
+    document.getElementById("issueUnits").value=normalizeRequestUnits(request);
+    document.getElementById("issueHospital").value=request.hospital||request.location||"";
+
+    showSection("issue",document.querySelector('.sidebar a[onclick*="issue"]'));
+}
+
+/* =========================================================
+   ISSUE BLOOD
+========================================================= */
 function issueBlood(){
+    const requestId=document.getElementById("issueRequestId").value.trim();
     const recipient=document.getElementById("issueRecipient").value.trim();
     const blood=document.getElementById("issueBlood").value;
     const units=Number(document.getElementById("issueUnits").value);
     const hospital=document.getElementById("issueHospital").value.trim();
-    if(!recipient||!blood||units<=0||!hospital){alert("Fill all issue fields.");return}
-    const inv=get(KEYS.inventory,[]);
-    const stock=inv.find(x=>x.blood===blood);
-    if(!stock||stock.units<units){alert("Insufficient "+blood+" stock.");return}
-    stock.units-=units;set(KEYS.inventory,inv);
-    const issued=get(KEYS.issued,[]);
-    issued.push({id:Date.now(),recipient,blood,units,hospital,date:new Date().toISOString().slice(0,10),status:"Completed"});
-    set(KEYS.issued,issued);
-    const req=get(KEYS.requests,[]);
-    const match=req.find(r=>(r.recipientName||r.recipient)===recipient&&(r.bloodGroup||r.blood)===blood&&(r.status==="Approved"||r.status==="Donor Accepted"));
-    if(match)match.status="Completed";
-    set(KEYS.requests,req);
-    addNotification("Blood issued to "+recipient+": "+blood+" ("+units+" units).");
+
+    if(!recipient || !blood || units<=0 || !hospital){
+        alert("Please fill all issue fields.");
+        return;
+    }
+
+    const db=getDB();
+
+    let request=null;
+
+    if(requestId){
+        request=db.requests.find(r=>String(r.id)===String(requestId));
+    }else{
+        request=db.requests.find(r=>
+            (r.recipientName||r.recipient)===recipient &&
+            normalizeRequestBlood(r)===blood &&
+            ["Approved","Donor Accepted"].includes(r.status)
+        );
+    }
+
+    if(request && !["Approved","Donor Accepted"].includes(request.status)){
+        alert("This request is not approved for issue.");
+        return;
+    }
+
+    const today=new Date();
+
+    const stock=db.inventory.find(item=>
+        item.blood===blood &&
+        Number(item.units||0)>=units &&
+        new Date((item.expiry||"")+"T23:59:59")>=today
+    );
+
+    if(!stock){
+        alert("Insufficient non-expired "+blood+" stock.");
+        return;
+    }
+
+    stock.units=Number(stock.units)-units;
+
+    const issue={
+        id:"ISS-"+Date.now(),
+        requestId:request ? request.id : requestId || "",
+        recipientId:request ? request.recipientId || "" : "",
+        recipientName:recipient,
+        blood,
+        units,
+        hospital,
+        bloodBank:"Blood Bank",
+        issuedBy:getCurrentStaff()?.name || "Staff",
+        status:"Completed",
+        date:new Date().toISOString(),
+        createdAt:new Date().toISOString()
+    };
+
+    db.bloodIssues.push(issue);
+
+    if(request){
+        request.status="Completed";
+        request.staffStatus="Completed";
+        request.updatedAt=new Date().toISOString();
+
+        db.notifications.push({
+            id:"NOT-"+Date.now()+"R",
+            role:"recipient",
+            userId:request.recipientId,
+            requestId:request.id,
+            message:"Blood has been issued for request "+request.id+".",
+            date:new Date().toLocaleString()
+        });
+
+        if(request.donorId){
+            db.notifications.push({
+                id:"NOT-"+Date.now()+"D",
+                role:"donor",
+                userId:request.donorId,
+                requestId:request.id,
+                message:"Blood request "+request.id+" has been completed.",
+                date:new Date().toLocaleString()
+            });
+        }
+
+        db.notifications.push({
+            id:"NOT-"+Date.now()+"A",
+            role:"admin",
+            requestId:request.id,
+            message:"Blood request "+request.id+" was completed by Staff after blood issue.",
+            date:new Date().toLocaleString()
+        });
+    }
+
+    db.notifications.push({
+        id:"NOT-"+Date.now()+"S",
+        role:"staff",
+        requestId:request ? request.id : "",
+        message:"Blood issued to "+recipient+": "+blood+" ("+units+" unit(s)).",
+        date:new Date().toLocaleString()
+    });
+
+    saveDB(db);
+
+    document.getElementById("issueRequestId").value="";
     document.getElementById("issueRecipient").value="";
     document.getElementById("issueBlood").value="";
     document.getElementById("issueUnits").value="";
     document.getElementById("issueHospital").value="";
-    const msg=document.getElementById("issueMessage");msg.className="notification";msg.textContent="Blood issued successfully.";
-    renderAll();alert("Blood issued successfully.");
+
+    document.getElementById("issueMessage").innerHTML=
+        '<div class="notification"><b>Success:</b> Blood issued successfully.</div>';
+
+    renderAll();
+    alert("Blood issued successfully.");
 }
 
-/* Eligibility */
+/* =========================================================
+   DONOR ELIGIBILITY
+   Same 120-day prototype interval as Donor panel.
+========================================================= */
 function renderEligibility(){
-    const body=document.getElementById("eligibilityBody"),arr=get(KEYS.eligibility,[]);
-    body.innerHTML=arr.length?arr.map(x=>`
-    <tr><td>${escapeHTML(x.donor)}</td><td>${escapeHTML(x.blood)}</td><td>${x.lastDonation||"-"}</td><td>${x.nextEligible||"-"}</td>
-    <td class="${x.status==="Eligible"?"available":x.status==="Not Eligible"?"rejected":"pending"}">${x.status||"Pending"}</td>
-    <td><button class="action accept" onclick="setEligibility(${x.id},'Eligible')">Eligible</button>
-    <button class="action reject" onclick="setEligibility(${x.id},'Not Eligible')">Not Eligible</button></td></tr>`).join(""):"<tr><td colspan='6'>No donor eligibility records.</td></tr>";
-}
-function setEligibility(id,status){
-    const arr=get(KEYS.eligibility,[]),x=arr.find(a=>a.id===id);if(!x)return;
-    x.status=status;set(KEYS.eligibility,arr);
-    addNotification(x.donor+" marked "+status+".");renderAll();
+    const body=document.getElementById("eligibilityBody");
+    const db=getDB();
+
+    if(!db.donors.length){
+        body.innerHTML='<tr><td colspan="5" class="empty">No donors registered.</td></tr>';
+        return;
+    }
+
+    body.innerHTML=db.donors.map(donor=>{
+        const donations=db.donations
+            .filter(d=>String(d.donorId)===String(donor.id) && d.status==="Completed")
+            .sort((a,b)=>new Date(b.date)-new Date(a.date));
+
+        const latest=donations[0];
+
+        if(!latest){
+            return `
+                <tr>
+                    <td>${escapeHTML(donor.name||"-")}</td>
+                    <td>${escapeHTML(donor.blood||"-")}</td>
+                    <td>No previous donation</td>
+                    <td>Eligible now</td>
+                    <td class="available">Eligible</td>
+                </tr>
+            `;
+        }
+
+        const lastDate=new Date(latest.date);
+        const nextDate=new Date(lastDate);
+        nextDate.setDate(nextDate.getDate()+120);
+
+        const eligible=new Date()>=nextDate;
+
+        return `
+            <tr>
+                <td>${escapeHTML(donor.name||"-")}</td>
+                <td>${escapeHTML(donor.blood||"-")}</td>
+                <td>${escapeHTML(latest.date)}</td>
+                <td>${nextDate.toISOString().slice(0,10)}</td>
+                <td class="${eligible?"available":"rejected"}">
+                    ${eligible?"Eligible":"Not Eligible"}
+                </td>
+            </tr>
+        `;
+    }).join("");
 }
 
-/* Donations */
+/* =========================================================
+   DONATION MANAGEMENT
+========================================================= */
 function renderDonations(){
-    const body=document.getElementById("donationBody"),arr=get(KEYS.donations,[]);
-    body.innerHTML=arr.length?arr.map(x=>`
-    <tr><td>${escapeHTML(x.donor)}</td><td>${x.blood}</td><td>${x.date}</td><td>${x.units}</td>
-    <td class="${statusClass(x.status)}">${x.status}</td>
-    <td><button class="action accept" onclick="donationStatus(${x.id},'Approved')">Approve</button>
-    <button class="action reject" onclick="donationStatus(${x.id},'Rejected')">Reject</button>
-    <button class="action update" onclick="donationStatus(${x.id},'Completed')">Complete</button></td></tr>`).join(""):"<tr><td colspan='6'>No donation records.</td></tr>";
+    const body=document.getElementById("donationBody");
+    const db=getDB();
+
+    if(!db.donations.length){
+        body.innerHTML='<tr><td colspan="6" class="empty">No donation records.</td></tr>';
+        return;
+    }
+
+    body.innerHTML=db.donations.slice().reverse().map(x=>`
+        <tr>
+            <td>${escapeHTML(x.donor||"-")}</td>
+            <td>${escapeHTML(x.blood||"-")}</td>
+            <td>${escapeHTML(x.date||"-")}</td>
+            <td>${Number(x.units||0)}</td>
+            <td class="${requestStatusClass(x.status)}">${escapeHTML(x.status||"Pending")}</td>
+            <td>
+                ${
+                    x.status==="Pending"
+                    ? `
+                        <button class="action green" onclick="donationStatus('${String(x.id).replace(/'/g,"\\'")}','Approved')">Approve</button>
+                        <button class="action red" onclick="donationStatus('${String(x.id).replace(/'/g,"\\'")}','Rejected')">Reject</button>
+                    `
+                    : x.status==="Approved"
+                    ? `<button class="action blue" onclick="donationStatus('${String(x.id).replace(/'/g,"\\'")}','Completed')">Complete</button>`
+                    : '<span>—</span>'
+                }
+            </td>
+        </tr>
+    `).join("");
 }
+
 function donationStatus(id,status){
-    const arr=get(KEYS.donations,[]),x=arr.find(a=>a.id===id);if(!x)return;
-    x.status=status;set(KEYS.donations,arr);
-    addNotification(x.donor+" donation status: "+status);renderAll();
+    const db=getDB();
+    const donation=db.donations.find(d=>String(d.id)===String(id));
+
+    if(!donation) return;
+
+    donation.status=status;
+
+    const donor=db.donors.find(d=>String(d.id)===String(donation.donorId));
+
+    if(donor){
+        db.notifications.unshift({
+            id:"NOT-"+Date.now(),
+            role:"donor",
+            userId:donor.id,
+            message:"Your donation status is now "+status+".",
+            date:new Date().toLocaleString()
+        });
+    }
+
+    db.notifications.unshift({
+        id:"NOT-"+Date.now()+"S",
+        role:"staff",
+        message:donation.donor+" donation status changed to "+status+".",
+        date:new Date().toLocaleString()
+    });
+
+    saveDB(db);
+    renderAll();
 }
 
-/* Collections */
-function renderCollections(){
-    const body=document.getElementById("collectionBody"),arr=get(KEYS.collections,[]);
-    body.innerHTML=arr.length?arr.map(x=>`<tr><td>${escapeHTML(x.donor)}</td><td>${x.blood}</td><td>${x.units}</td><td>${x.date}</td><td class="completed">${x.status}</td></tr>`).join(""):"<tr><td colspan='5'>No collection records.</td></tr>";
-}
-
-/* Notifications */
-function renderNotifications(){
-    const list=document.getElementById("notificationList"),arr=get(KEYS.notifications,[]);
-    list.innerHTML=arr.length?arr.map(x=>`<div class="notification"><b>Blood Bank:</b> ${escapeHTML(x.message)}<br><small>${escapeHTML(x.date)}</small></div>`).join(""):"<div class='notification'>No notifications.</div>";
-    if(arr[0])document.getElementById("latestNotification").innerHTML="<b>Latest Notification:</b> "+escapeHTML(arr[0].message);
-}
-
-/* Dashboard */
-function updateDashboard(){
-    const inv=get(KEYS.inventory,[]),collections=get(KEYS.collections,[]),requests=get(KEYS.requests,[]);
-    const total=inv.reduce((s,x)=>s+Number(x.units||0),0);
-    const issued=get(KEYS.issued,[]).reduce((s,x)=>s+Number(x.units||0),0);
-    const expired=inv.filter(x=>new Date(x.expiry+"T23:59:59")<new Date()).reduce((s,x)=>s+Number(x.units||0),0);
-    const today=new Date().toISOString().slice(0,10);
-    const collectedToday=collections.filter(x=>x.date===today).reduce((s,x)=>s+Number(x.units||0),0);
-    const issuedToday=get(KEYS.issued,[]).filter(x=>x.date===today).reduce((s,x)=>s+Number(x.units||0),0);
-    setText("totalBloodUnits",total);setText("availableUnits",total);setText("collectedToday",collectedToday);
-    setText("issuedToday",issuedToday||issued);setText("expiredUnits",expired);
-    setText("pendingRequests",requests.filter(x=>x.status==="Pending").length);
-    setText("pendingScreening",collections.filter(x=>!x.screening).length);
-    setText("pendingDonations",get(KEYS.donations,[]).filter(x=>x.status==="Pending").length);
-}
-function setText(id,v){document.getElementById(id).textContent=v}
-
-/* Report */
+/* =========================================================
+   REPORT
+========================================================= */
 function updateReport(){
-    const inv=get(KEYS.inventory,[]),col=get(KEYS.collections,[]),issued=get(KEYS.issued,[]);
-    const total=inv.reduce((s,x)=>s+Number(x.units||0),0);
-    setText("reportCollected",col.reduce((s,x)=>s+Number(x.units||0),0));
-    setText("reportScreened",col.filter(x=>x.screening).reduce((s,x)=>s+Number(x.units||0),0));
-    setText("reportSafe",col.filter(x=>x.screening==="Safe").reduce((s,x)=>s+Number(x.units||0),0));
-    setText("reportIssued",issued.reduce((s,x)=>s+Number(x.units||0),0));
-    setText("reportExpired",inv.filter(x=>new Date(x.expiry+"T23:59:59")<new Date()).reduce((s,x)=>s+Number(x.units||0),0));
-    setText("reportAvailable",total);
+    const db=getDB();
+
+    const collections=getCollections();
+    const issued=db.bloodIssues||[];
+
+    const totalCollected=collections.reduce((sum,x)=>sum+Number(x.units||0),0);
+    const totalScreened=collections
+        .filter(x=>x.screening==="Safe" || x.screening==="Unsafe")
+        .reduce((sum,x)=>sum+Number(x.units||0),0);
+
+    const safeUnits=collections
+        .filter(x=>x.screening==="Safe")
+        .reduce((sum,x)=>sum+Number(x.units||0),0);
+
+    const issuedUnits=issued.reduce((sum,x)=>sum+Number(x.units||0),0);
+
+    const expiredUnits=db.inventory
+        .filter(x=>new Date((x.expiry||"")+"T23:59:59")<new Date())
+        .reduce((sum,x)=>sum+Number(x.units||0),0);
+
+    const available=db.inventory
+        .filter(x=>new Date((x.expiry||"")+"T23:59:59")>=new Date())
+        .reduce((sum,x)=>sum+Number(x.units||0),0);
+
+    setText("reportCollected",totalCollected);
+    setText("reportScreened",totalScreened);
+    setText("reportSafe",safeUnits);
+    setText("reportIssued",issuedUnits);
+    setText("reportExpired",expiredUnits);
+    setText("reportAvailable",available);
 }
 
-/* Render everything */
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+function renderNotifications(){
+    const list=document.getElementById("notificationList");
+    const db=getDB();
+    const staff=getCurrentStaff();
+
+    if(!staff){
+        list.innerHTML="";
+        return;
+    }
+
+    const notifications=db.notifications
+        .filter(n=>
+            n.role==="staff" ||
+            (n.role==="staff" && String(n.userId)===String(staff.id))
+        )
+        .slice()
+        .sort((a,b)=>new Date(b.date)-new Date(a.date));
+
+    if(!notifications.length){
+        list.innerHTML='<div class="empty">No staff notifications.</div>';
+        document.getElementById("latestNotification").innerHTML=
+            "<b>System:</b> No new staff notifications.";
+        return;
+    }
+
+    list.innerHTML=notifications.map(n=>`
+        <div class="notification">
+            <b>Blood Bank</b><br>
+            ${escapeHTML(n.message)}<br>
+            <small>${escapeHTML(n.date)}</small>
+        </div>
+    `).join("");
+
+    document.getElementById("latestNotification").innerHTML=
+        "<b>Latest Notification:</b> "+escapeHTML(notifications[0].message);
+}
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+function updateDashboard(){
+    const db=getDB();
+    const collections=getCollections();
+    const today=new Date().toISOString().slice(0,10);
+
+    const total=db.inventory.reduce((sum,x)=>sum+Number(x.units||0),0);
+
+    const available=db.inventory
+        .filter(x=>new Date((x.expiry||"")+"T23:59:59")>=new Date())
+        .reduce((sum,x)=>sum+Number(x.units||0),0);
+
+    const expired=db.inventory
+        .filter(x=>new Date((x.expiry||"")+"T23:59:59")<new Date())
+        .reduce((sum,x)=>sum+Number(x.units||0),0);
+
+    const collectedToday=collections
+        .filter(x=>x.date===today)
+        .reduce((sum,x)=>sum+Number(x.units||0),0);
+
+    const issuedToday=(db.bloodIssues||[])
+        .filter(x=>String(x.date||"").slice(0,10)===today)
+        .reduce((sum,x)=>sum+Number(x.units||0),0);
+
+    const pendingRequests=db.requests.filter(x=>
+        ["Pending","Donor Accepted","Approved"].includes(x.status)
+    ).length;
+
+    const pendingScreening=collections.filter(x=>!x.screening).length;
+
+    const pendingDonations=db.donations.filter(x=>x.status==="Pending").length;
+
+    setText("totalBloodUnits",total);
+    setText("availableUnits",available);
+    setText("collectedToday",collectedToday);
+    setText("issuedToday",issuedToday);
+    setText("expiredUnits",expired);
+    setText("pendingRequests",pendingRequests);
+    setText("pendingScreening",pendingScreening);
+    setText("pendingDonations",pendingDonations);
+}
+
+function setText(id,value){
+    const el=document.getElementById(id);
+    if(el) el.textContent=value;
+}
+
+/* =========================================================
+   RENDER ALL
+========================================================= */
 function renderAll(){
-    loadProfile();renderCollections();renderScreening();renderInventory();renderRequests();
-    renderEligibility();renderDonations();renderNotifications();updateDashboard();updateReport();
+    if(!getCurrentStaff()) return;
+
+    loadProfile();
+    renderCollections();
+    renderScreening();
+    renderInventory();
+    renderRequests();
+    renderEligibility();
+    renderDonations();
+    renderNotifications();
+    updateDashboard();
+    updateReport();
 }
 
-/* Automatically receive changes made by Recipient/Donor/Admin in another tab */
+/* =========================================================
+   CROSS-TAB / INITIAL LOAD
+========================================================= */
 window.addEventListener("storage",function(e){
-    if(Object.values(KEYS).includes(e.key))renderAll();
+    if(e.key===DB_KEY || e.key===CURRENT_STAFF_KEY){
+        renderAll();
+    }
 });
-setInterval(()=>{if(document.getElementById("dashboardPage").style.display==="block")renderAll()},1500);
 
-/* Initial state */
-document.addEventListener("DOMContentLoaded",()=>{
+setInterval(function(){
+    if(document.getElementById("dashboardPage").style.display==="block"){
+        renderAll();
+    }
+},1500);
+
+document.addEventListener("DOMContentLoaded",function(){
+    getDB();
+
     document.getElementById("loginPage").style.display="flex";
     document.getElementById("registerPage").style.display="none";
     document.getElementById("dashboardPage").style.display="none";
+
     clearLogin();
-    renderAll();
+    clearRegister();
+
+    localStorage.removeItem(CURRENT_STAFF_KEY);
 });
 </script>
 </body>
