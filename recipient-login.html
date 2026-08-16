@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Recipient Panel - Blood Bank</title>
+
 <style>
 *{
     margin:0;
@@ -11,457 +12,3493 @@
     box-sizing:border-box;
     font-family:Arial,sans-serif;
 }
+
 body{
     background:#f4f6f9;
+    color:#333;
 }
 
-/* Login */
-#loginPage{
+/* ================= LOGIN / REGISTER ================= */
+
+.auth-page{
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
-    background:linear-gradient(135deg,#b71c1c,#e53935);
+    padding:20px;
+    background:linear-gradient(135deg,#8b0000,#e53935);
 }
-.login-box{
-    background:#fff;
-    width:430px;
+
+.auth-box{
+    width:450px;
+    max-width:100%;
+    background:white;
     padding:30px;
     border-radius:15px;
     box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
-.login-box h2{
+
+.auth-box h2{
     text-align:center;
     color:#b71c1c;
-    margin-bottom:20px;
+    margin-bottom:22px;
 }
+
 .input-group{
     margin-bottom:15px;
 }
+
 .input-group label{
     display:block;
-    margin-bottom:6px;
     font-weight:bold;
+    margin-bottom:6px;
 }
-.input-group input,.input-group select{
+
+.input-group input,
+.input-group select,
+.input-group textarea{
     width:100%;
-    padding:10px;
+    padding:11px;
     border:1px solid #ccc;
-    border-radius:8px;
+    border-radius:7px;
+    outline:none;
 }
-.btn{
-    width:100%;
-    padding:12px;
-    background:#b71c1c;
-    color:#fff;
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus{
+    border-color:#b71c1c;
+}
+
+.main-btn,
+.back-btn,
+.action-btn{
     border:none;
-    border-radius:8px;
+    border-radius:7px;
+    padding:10px 14px;
+    color:white;
     cursor:pointer;
-    margin-top:10px;
 }
-.btn:hover{
+
+.main-btn{
+    width:100%;
+    background:#b71c1c;
+    margin-top:5px;
+}
+
+.main-btn:hover{
     background:#8e0000;
 }
-.link{
-    text-align:center;
-    margin-top:15px;
-}
-.link a{
-    color:#b71c1c;
-    text-decoration:none;
-}
-#error{
-    color:red;
-    text-align:center;
-    display:none;
+
+.back-btn{
+    width:100%;
+    background:#555;
     margin-top:10px;
 }
 
-/* Dashboard */
+.back-btn:hover{
+    background:#333;
+}
+
+.create-link{
+    text-align:center;
+    margin:15px 0;
+}
+
+.create-link a{
+    color:#b71c1c;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.error{
+    display:none;
+    color:#c62828;
+    text-align:center;
+    margin:10px 0;
+}
+
+#registerPage,
 #dashboardPage{
     display:none;
 }
+
+/* ================= SIDEBAR ================= */
+
 .sidebar{
-    width:250px;
-    background:#b71c1c;
-    color:#fff;
-    height:100vh;
     position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#b71c1c;
+    color:white;
     padding:20px;
+    overflow-y:auto;
 }
+
 .sidebar h2{
     text-align:center;
     margin-bottom:20px;
 }
+
 .sidebar a{
     display:block;
-    color:#fff;
+    color:white;
     text-decoration:none;
-    padding:12px;
-    margin:6px 0;
+    padding:11px;
+    margin:4px 0;
     border-radius:6px;
+    cursor:pointer;
 }
-.sidebar a:hover,.sidebar a.active{
+
+.sidebar a:hover,
+.sidebar a.active{
     background:#8e0000;
 }
+
+/* ================= MAIN ================= */
+
 .main{
     margin-left:250px;
     padding:25px;
 }
+
 .topbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:25px;
+    margin-bottom:22px;
 }
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    margin-bottom:25px;
+
+.topbar h1{
+    color:#333;
 }
-.card{
-    background:#fff;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,.1);
-}
-.card h3{
-    color:#666;
-    font-size:16px;
-}
-.card p{
-    font-size:26px;
-    color:#b71c1c;
-    font-weight:bold;
-    margin-top:10px;
-}
+
+/* ================= SECTIONS ================= */
+
 .section{
     display:none;
-    background:#fff;
-    padding:20px;
+    background:white;
+    padding:25px;
     border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,.1);
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
+
 .section.active{
     display:block;
 }
+
+.section h2{
+    color:#b71c1c;
+    margin-bottom:20px;
+}
+
+/* ================= CARDS ================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:16px;
+}
+
+.card{
+    background:white;
+    padding:18px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.card h3{
+    font-size:14px;
+    color:#666;
+}
+
+.card p{
+    font-size:28px;
+    font-weight:bold;
+    color:#b71c1c;
+    margin-top:8px;
+}
+
+/* ================= FORMS ================= */
+
+.form-container{
+    max-width:650px;
+}
+
+.form-box{
+    background:#f8f8f8;
+    padding:18px;
+    border-radius:9px;
+    margin-bottom:18px;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
 table{
     width:100%;
     border-collapse:collapse;
     margin-top:15px;
 }
-table th,table td{
+
+th,
+td{
     border:1px solid #ddd;
     padding:10px;
     text-align:left;
 }
-table th{
+
+th{
     background:#b71c1c;
-    color:#fff;
+    color:white;
 }
-.notification{
-    background:#ffebee;
-    border-left:5px solid #b71c1c;
-    padding:15px;
-    border-radius:8px;
-    margin:15px 0;
+
+/* ================= STATUS ================= */
+
+.status-pending{
+    color:#f57c00;
+    font-weight:bold;
 }
-.status{
+
+.status-approved{
+    color:#1976d2;
+    font-weight:bold;
+}
+
+.status-accepted{
     color:#2e7d32;
     font-weight:bold;
 }
-</style>
-</head>
-<body>
 
-<!-- Login Page -->
-<div id="loginPage">
-<div class="login-box">
-
-<h2>Recipient Login</h2>
-
-<div class="input-group">
-<label>Username</label>
-<input type="text" id="username" placeholder="Enter Username">
-</div>
-
-<div class="input-group">
-<label>Password</label>
-<input type="password" id="password" placeholder="Enter Password">
-</div>
-
-<button class="btn" onclick="login()">Login</button>
-
-<p id="error">Invalid Username or Password</p>
-
-<div class="link">
-<a href="#" onclick="showRegister()">Create Account</a>
-</div>
-
-<!-- Registration Form -->
-<div id="registerForm" style="display:none;margin-top:25px;">
-
-<h3 style="color:#b71c1c;margin-bottom:15px;">Create Recipient Account</h3>
-
-<div class="input-group">
-<input type="text" placeholder="Full Name">
-</div>
-
-<div class="input-group">
-<input type="email" placeholder="Email">
-</div>
-
-<div class="input-group">
-<input type="text" placeholder="Phone Number">
-</div>
-
-<div class="input-group">
-<input type="text" placeholder="Location">
-</div>
-
-<div class="input-group">
-<input type="text" placeholder="Username">
-</div>
-
-<div class="input-group">
-<input type="password" placeholder="Password">
-</div>
-
-<button class="btn" onclick="register()">Create Account</button>
-
-</div>
-
-</div>
-</div>
-
-<!-- Dashboard -->
-<div id="dashboardPage">
-
-<div class="sidebar">
-
-<h2>Recipient Panel</h2>
-
-<a href="#" class="active" onclick="showSection('dashboard',this)">Dashboard</a>
-<a href="#" onclick="showSection('profile',this)">Profile Update</a>
-<a href="#" onclick="showSection('request',this)">Blood Request</a>
-<a href="#" onclick="showSection('status',this)">Request Status</a>
-<a href="#" onclick="showSection('notification',this)">Donor Notification</a>
-<a href="#" onclick="showSection('donorinfo',this)">Donor Information</a>
-<a href="#" onclick="showSection('history',this)">Request History</a>
-<a href="#" onclick="showSection('cancel',this)">Cancel Request</a>
-<a href="#" onclick="logout()">Logout</a>
-
-</div>
-
-<div class="main">
-
-<div class="topbar">
-<h1>Recipient Dashboard</h1>
-<div>Welcome, <b>Recipient</b></div>
-</div>
-
-<!-- Dashboard -->
-<div id="dashboard" class="section active">
-
-<div class="cards">
-
-<div class="card">
-<h3>Blood Requests</h3>
-<p>3</p>
-</div>
-
-<div class="card">
-<h3>Pending Requests</h3>
-<p>1</p>
-</div>
-
-<div class="card">
-<h3>Accepted Donors</h3>
-<p>1</p>
-</div>
-
-</div>
-
-<div class="notification">
-<b>Notification:</b> A+ donor has accepted your blood request.
-</div>
-
-</div>
-
-<!-- Profile -->
-<div id="profile" class="section">
-
-<h2>Profile Update</h2>
-
-<div class="input-group">
-<label>Full Name</label>
-<input value="Karim Ahmed">
-</div>
-
-<div class="input-group">
-<label>Email</label>
-<input value="karim@gmail.com">
-</div>
-
-<div class="input-group">
-<label>Phone</label>
-<input value="01812345678">
-</div>
-
-<div class="input-group">
-<label>Location</label>
-<input value="Dhaka">
-</div>
-
-<button class="btn">Save Changes</button>
-
-</div>
-
-<!-- Blood Request -->
-<div id="request" class="section">
-
-<h2>Blood Request Form</h2>
-
-<div class="input-group">
-<label>Blood Group</label>
-<select>
-<option>A+</option>
-<option>A-</option>
-<option>B+</option>
-<option>B-</option>
-<option>AB+</option>
-<option>AB-</option>
-<option>O+</option>
-<option>O-</option>
-</select>
-</div>
-
-<div class="input-group">
-<label>Units Required</label>
-<input type="number" placeholder="Enter Units">
-</div>
-
-<div class="input-group">
-<label>Hospital</label>
-<input placeholder="Hospital Name">
-</div>
-
-<div class="input-group">
-<label>Location</label>
-<input placeholder="Hospital Location">
-</div>
-
-<button class="btn" onclick="submitRequest()">Submit Blood Request</button>
-
-</div>
-
-<!-- Request Status -->
-<div id="status" class="section">
-
-<h2>Request Status</h2>
-
-<table>
-<tr><th>Blood Group</th><th>Hospital</th><th>Status</th></tr>
-<tr><td>A+</td><td>DMCH</td><td class="status">Pending</td></tr>
-<tr><td>O+</td><td>Square Hospital</td><td class="status">Approved</td></tr>
-</table>
-
-</div>
-
-<!-- Notification -->
-<div id="notification" class="section">
-
-<h2>Donor Notifications</h2>
-
-<div class="notification">
-<b>Success!</b> Rahim Hasan (A+) accepted your request.
-</div>
-
-</div>
-
-<!-- Donor Info -->
-<div id="donorinfo" class="section">
-
-<h2>Donor Information</h2>
-
-<p><b>Name:</b> Rahim Hasan</p>
-<p><b>Blood Group:</b> A+</p>
-<p><b>Phone:</b> 01711111111</p>
-<p><b>Location:</b> Dhaka</p>
-<p><b>Status:</b> Accepted</p>
-
-</div>
-
-<!-- History -->
-<div id="history" class="section">
-
-<h2>Request History</h2>
-
-<table>
-<tr><th>Date</th><th>Blood Group</th><th>Hospital</th><th>Status</th></tr>
-<tr><td>2026-08-10</td><td>A+</td><td>DMCH</td><td>Completed</td></tr>
-<tr><td>2026-07-20</td><td>O+</td><td>Square Hospital</td><td>Approved</td></tr>
-</table>
-
-</div>
-
-<!-- Cancel -->
-<div id="cancel" class="section">
-
-<h2>Cancel Blood Request</h2>
-
-<p>Do you want to cancel your pending blood request?</p>
-
-<button class="btn" onclick="cancelRequest()">Cancel Request</button>
-
-</div>
-
-</div>
-</div>
-
-<script>
-function login(){
-    const username=document.getElementById('username').value;
-    const password=document.getElementById('password').value;
-
-    if(username==='recipient' && password==='recipient123'){
-        document.getElementById('loginPage').style.display='none';
-        document.getElementById('dashboardPage').style.display='block';
-    }else{
-        document.getElementById('error').style.display='block';
+.status-completed{
+    color:#1565c0;
+    font-weight:bold;
+}
+
+.status-rejected{
+    color:#c62828;
+    font-weight:bold;
+}
+
+.status-cancelled{
+    color:#777;
+    font-weight:bold;
+}
+
+/* ================= NOTIFICATION ================= */
+
+.notification{
+    background:#ffebee;
+    border-left:5px solid #b71c1c;
+    padding:14px;
+    border-radius:6px;
+    margin:10px 0;
+}
+
+/* ================= BUTTONS ================= */
+
+.action-btn{
+    margin:2px;
+}
+
+.accept{
+    background:#2e7d32;
+}
+
+.reject{
+    background:#c62828;
+}
+
+.cancel{
+    background:#757575;
+}
+
+/* ================= INFO ================= */
+
+.info-box{
+    background:#f8f8f8;
+    padding:20px;
+    border-radius:10px;
+}
+
+.info-box p{
+    margin:9px 0;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    padding:20px;
+}
+
+/* ================= EMERGENCY ================= */
+
+.emergency-card{
+    background:#fff5f5;
+    border:2px solid #c62828;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.emergency-card h3{
+    color:#c62828;
+    margin-bottom:12px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:750px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
     }
 }
+</style>
+</head>
 
-function logout(){
-    document.getElementById('dashboardPage').style.display='none';
-    document.getElementById('loginPage').style.display='flex';
+<body>
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<div id="loginPage" class="auth-page">
+
+    <div class="auth-box">
+
+        <h2>Recipient Login</h2>
+
+        <div class="input-group">
+
+            <label>Username</label>
+
+            <input
+                id="username"
+                type="text"
+                placeholder="Enter Username"
+                autocomplete="off"
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Password</label>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Enter Password"
+                autocomplete="new-password"
+            >
+
+        </div>
+
+        <p id="loginError" class="error">
+            Invalid username or password.
+        </p>
+
+        <button
+            class="main-btn"
+            onclick="login()">
+            Login
+        </button>
+
+        <div class="create-link">
+
+            <a onclick="showRegister()">
+                Create Recipient Account
+            </a>
+
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="goHome()">
+            ← Back to Home
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CREATE ACCOUNT
+===================================================== -->
+
+<div id="registerPage" class="auth-page">
+
+    <div class="auth-box">
+
+        <h2>Create Recipient Account</h2>
+
+        <div class="input-group">
+
+            <label>Full Name</label>
+
+            <input
+                id="registerName"
+                type="text"
+                placeholder="Enter Full Name"
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Email</label>
+
+            <input
+                id="registerEmail"
+                type="email"
+                placeholder="Enter Email"
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Phone Number</label>
+
+            <input
+                id="registerPhone"
+                type="text"
+                placeholder="Enter Phone Number"
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Location</label>
+
+            <input
+                id="registerLocation"
+                type="text"
+                placeholder="Enter Location"
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Blood Group</label>
+
+            <select id="registerBlood">
+
+                <option value="">
+                    Select Blood Group
+                </option>
+
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
+
+            </select>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Username</label>
+
+            <input
+                id="registerUsername"
+                type="text"
+                placeholder="Create Username"
+                autocomplete="off"
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Password</label>
+
+            <input
+                id="registerPassword"
+                type="password"
+                placeholder="Create Password"
+                autocomplete="new-password"
+            >
+
+        </div>
+
+        <button
+            class="main-btn"
+            onclick="createAccount()">
+            Create Account
+        </button>
+
+        <button
+            class="back-btn"
+            onclick="showLogin()">
+            ← Back to Login
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<div id="dashboardPage">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>Recipient Panel</h2>
+
+        <a
+            class="active"
+            onclick="showSection('dashboard',this)">
+            Dashboard
+        </a>
+
+        <a
+            onclick="showSection('profile',this)">
+            Recipient Profile
+        </a>
+
+        <a
+            onclick="showSection('request',this)">
+            Blood Request
+        </a>
+
+        <a
+            onclick="showSection('status',this)">
+            Request Status
+        </a>
+
+        <a
+            onclick="showSection('donor',this)">
+            Donor Information
+        </a>
+
+        <a
+            onclick="showSection('notification',this)">
+            Notifications
+        </a>
+
+        <a
+            onclick="showSection('history',this)">
+            Request History
+        </a>
+
+        <a
+            onclick="showSection('emergency',this)">
+            Emergency Request
+        </a>
+
+        <a
+            onclick="showSection('bloodIssue',this)">
+            Blood Issue
+        </a>
+
+        <a onclick="logout()">
+            Logout
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <h1>Recipient Dashboard</h1>
+
+            <div>
+                Welcome,
+                <b id="recipientWelcome">
+                    Recipient
+                </b>
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================= -->
+
+        <section
+            id="dashboard"
+            class="section active">
+
+            <h2>Dashboard</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Total Blood Requests</h3>
+                    <p id="totalRequests">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Pending Requests</h3>
+                    <p id="pendingRequests">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Approved Requests</h3>
+                    <p id="approvedRequests">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Completed Requests</h3>
+                    <p id="completedRequests">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Cancelled Requests</h3>
+                    <p id="cancelledRequests">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Matched Donors</h3>
+                    <p id="matchedDonors">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Emergency Requests</h3>
+                    <p id="emergencyCount">0</p>
+                </div>
+
+            </div>
+
+            <h3 style="margin-top:25px">
+                Latest Notifications
+            </h3>
+
+            <div id="dashboardNotifications"></div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROFILE
+        ================================================= -->
+
+        <section
+            id="profile"
+            class="section">
+
+            <h2>Recipient Profile</h2>
+
+            <div class="form-container">
+
+                <div class="input-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        id="profileName"
+                        type="text">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Email</label>
+
+                    <input
+                        id="profileEmail"
+                        type="email">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        id="profilePhone"
+                        type="text">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Location</label>
+
+                    <input
+                        id="profileLocation"
+                        type="text">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Blood Group</label>
+
+                    <select id="profileBlood">
+
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+
+                    </select>
+
+                </div>
+
+                <button
+                    class="main-btn"
+                    onclick="updateProfile()">
+
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             BLOOD REQUEST
+        ================================================= -->
+
+        <section
+            id="request"
+            class="section">
+
+            <h2>Create Blood Request</h2>
+
+            <div class="form-container">
+
+                <div class="input-group">
+
+                    <label>
+                        Required Blood Group
+                    </label>
+
+                    <select id="requestBlood">
+
+                        <option value="">
+                            Select Blood Group
+                        </option>
+
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+
+                    </select>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+                        Required Units
+                    </label>
+
+                    <input
+                        id="requestUnits"
+                        type="number"
+                        min="1"
+                        placeholder="Enter required units">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+                        Hospital Name
+                    </label>
+
+                    <input
+                        id="requestHospital"
+                        type="text"
+                        placeholder="Enter hospital name">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+                        Hospital / Location
+                    </label>
+
+                    <input
+                        id="requestLocation"
+                        type="text"
+                        placeholder="Enter location">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+                        Urgency
+                    </label>
+
+                    <select id="requestUrgency">
+
+                        <option value="Normal">
+                            Normal
+                        </option>
+
+                        <option value="Urgent">
+                            Urgent
+                        </option>
+
+                        <option value="Emergency">
+                            Emergency
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button
+                    class="main-btn"
+                    onclick="submitBloodRequest()">
+
+                    Submit Blood Request
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             REQUEST STATUS
+        ================================================= -->
+
+        <section
+            id="status"
+            class="section">
+
+            <h2>Request Status</h2>
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Request ID</th>
+                            <th>Date</th>
+                            <th>Blood Group</th>
+                            <th>Units</th>
+                            <th>Hospital</th>
+                            <th>Urgency</th>
+                            <th>Donor</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="statusTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DONOR INFORMATION
+        ================================================= -->
+
+        <section
+            id="donor"
+            class="section">
+
+            <h2>Matched Donor Information</h2>
+
+            <div id="donorInfo"></div>
+
+        </section>
+
+
+        <!-- =================================================
+             NOTIFICATIONS
+        ================================================= -->
+
+        <section
+            id="notification"
+            class="section">
+
+            <h2>Notifications</h2>
+
+            <div id="notificationList"></div>
+
+        </section>
+
+
+        <!-- =================================================
+             HISTORY
+        ================================================= -->
+
+        <section
+            id="history"
+            class="section">
+
+            <h2>Request History</h2>
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Date</th>
+                            <th>Blood Group</th>
+                            <th>Hospital / Blood Bank</th>
+                            <th>Units</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="historyTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             EMERGENCY
+        ================================================= -->
+
+        <section
+            id="emergency"
+            class="section">
+
+            <h2>Emergency Blood Request</h2>
+
+            <div class="emergency-card">
+
+                <h3>
+                    URGENT BLOOD REQUEST
+                </h3>
+
+                <div class="input-group">
+
+                    <label>Blood Group</label>
+
+                    <select id="emergencyBlood">
+
+                        <option value="">
+                            Select Blood Group
+                        </option>
+
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+
+                    </select>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+                        Required Units
+                    </label>
+
+                    <input
+                        id="emergencyUnits"
+                        type="number"
+                        min="1">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Hospital</label>
+
+                    <input
+                        id="emergencyHospital"
+                        type="text">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Location</label>
+
+                    <input
+                        id="emergencyLocation"
+                        type="text">
+
+                </div>
+
+                <button
+                    class="main-btn"
+                    onclick="submitEmergencyRequest()">
+
+                    Submit Emergency Request
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             BLOOD ISSUE
+        ================================================= -->
+
+        <section
+            id="bloodIssue"
+            class="section">
+
+            <h2>Blood Issue Status</h2>
+
+            <div id="bloodIssueList"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SHARED DATABASE
+========================================================= */
+
+const DB_KEY = "bloodBankDB";
+
+const CURRENT_RECIPIENT_KEY =
+    "currentRecipientId";
+
+
+function createEmptyDB(){
+
+    return {
+
+        donors:[],
+
+        recipients:[],
+
+        requests:[],
+
+        donations:[],
+
+        inventory:[],
+
+        bloodIssues:[],
+
+        notifications:[],
+
+        staff:[]
+
+    };
+
 }
+
+
+function getDB(){
+
+    let db =
+        JSON.parse(
+            localStorage.getItem(DB_KEY)
+            || "null"
+        );
+
+    if(!db){
+
+        db = createEmptyDB();
+
+    }
+
+    db.donors =
+        db.donors || [];
+
+    db.recipients =
+        db.recipients || [];
+
+    db.requests =
+        db.requests || [];
+
+    db.donations =
+        db.donations || [];
+
+    db.inventory =
+        db.inventory || [];
+
+    db.bloodIssues =
+        db.bloodIssues || [];
+
+    db.notifications =
+        db.notifications || [];
+
+    db.staff =
+        db.staff || [];
+
+    return db;
+
+}
+
+
+function saveDB(db){
+
+    localStorage.setItem(
+        DB_KEY,
+        JSON.stringify(db)
+    );
+
+}
+
+
+/* =========================================================
+   CURRENT RECIPIENT
+========================================================= */
+
+function currentRecipient(){
+
+    const id =
+        localStorage.getItem(
+            CURRENT_RECIPIENT_KEY
+        );
+
+    if(!id){
+
+        return null;
+
+    }
+
+    const db = getDB();
+
+    return db.recipients.find(
+        function(recipient){
+
+            return recipient.id === id;
+
+        }
+    ) || null;
+
+}
+
+
+/* =========================================================
+   HTML SAFETY
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   STATUS CLASS
+========================================================= */
+
+function statusClass(status){
+
+    switch(status){
+
+        case "Approved":
+        case "Donor Accepted":
+        case "Accepted":
+
+            return "status-approved";
+
+        case "Completed":
+
+            return "status-completed";
+
+        case "Rejected":
+
+            return "status-rejected";
+
+        case "Cancelled":
+
+            return "status-cancelled";
+
+        default:
+
+            return "status-pending";
+
+    }
+
+}
+
+
+/* =========================================================
+   LOGIN / REGISTER PAGE
+========================================================= */
 
 function showRegister(){
-    document.getElementById('registerForm').style.display='block';
+
+    document.getElementById(
+        "loginPage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "registerPage"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "dashboardPage"
+    ).style.display = "none";
+
 }
 
-function register(){
-    alert('Recipient account created successfully!');
-    document.getElementById('registerForm').style.display='none';
+
+function showLogin(){
+
+    document.getElementById(
+        "registerPage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "loginPage"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "dashboardPage"
+    ).style.display = "none";
+
+    clearLogin();
+
 }
 
-function showSection(id,el){
-    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
 
-    document.querySelectorAll('.sidebar a').forEach(a=>a.classList.remove('active'));
-    el.classList.add('active');
+function goHome(){
+
+    window.location.href =
+        "index.html";
+
 }
 
-function submitRequest(){
-    alert('Blood request submitted successfully. Matching donors will be notified.');
+
+/* =========================================================
+   CREATE ACCOUNT
+========================================================= */
+
+function createAccount(){
+
+    const name =
+        document.getElementById(
+            "registerName"
+        ).value.trim();
+
+    const email =
+        document.getElementById(
+            "registerEmail"
+        ).value.trim();
+
+    const phone =
+        document.getElementById(
+            "registerPhone"
+        ).value.trim();
+
+    const location =
+        document.getElementById(
+            "registerLocation"
+        ).value.trim();
+
+    const blood =
+        document.getElementById(
+            "registerBlood"
+        ).value;
+
+    const username =
+        document.getElementById(
+            "registerUsername"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "registerPassword"
+        ).value;
+
+
+    if(
+        !name ||
+        !email ||
+        !phone ||
+        !location ||
+        !blood ||
+        !username ||
+        !password
+    ){
+
+        alert(
+            "Please fill all fields."
+        );
+
+        return;
+
+    }
+
+
+    const db = getDB();
+
+
+    const usernameExists =
+        db.recipients.some(
+            function(recipient){
+
+                return recipient.username
+                    .toLowerCase()
+                    === username.toLowerCase();
+
+            }
+        );
+
+
+    if(usernameExists){
+
+        alert(
+            "Username already exists."
+        );
+
+        return;
+
+    }
+
+
+    const emailExists =
+        db.recipients.some(
+            function(recipient){
+
+                return recipient.email
+                    .toLowerCase()
+                    === email.toLowerCase();
+
+            }
+        );
+
+
+    if(emailExists){
+
+        alert(
+            "Email already exists."
+        );
+
+        return;
+
+    }
+
+
+    const recipient = {
+
+        id:
+            "REC-" +
+            Date.now(),
+
+        name:name,
+
+        email:email,
+
+        phone:phone,
+
+        location:location,
+
+        blood:blood,
+
+        username:username,
+
+        password:password,
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    db.recipients.push(
+        recipient
+    );
+
+
+    saveDB(db);
+
+
+    clearRegister();
+
+
+    alert(
+        "Recipient account created successfully. Please login."
+    );
+
+
+    showLogin();
+
 }
 
-function cancelRequest(){
-    alert('Your blood request has been cancelled.');
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function login(){
+
+    const username =
+        document.getElementById(
+            "username"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+
+    const db = getDB();
+
+
+    const recipient =
+        db.recipients.find(
+            function(r){
+
+                return (
+                    r.username === username &&
+                    r.password === password
+                );
+
+            }
+        );
+
+
+    if(!recipient){
+
+        document.getElementById(
+            "loginError"
+        ).style.display = "block";
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        CURRENT_RECIPIENT_KEY,
+        recipient.id
+    );
+
+
+    document.getElementById(
+        "loginError"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "loginPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "registerPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "dashboardPage"
+    ).style.display = "block";
+
+
+    clearLogin();
+
+    openDashboard();
+
 }
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout(){
+
+    localStorage.removeItem(
+        CURRENT_RECIPIENT_KEY
+    );
+
+
+    document.getElementById(
+        "dashboardPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "registerPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "loginPage"
+    ).style.display = "flex";
+
+
+    clearLogin();
+
+    clearRegister();
+
+
+    document.getElementById(
+        "loginError"
+    ).style.display = "none";
+
+}
+
+
+/* =========================================================
+   CLEAR LOGIN
+========================================================= */
+
+function clearLogin(){
+
+    document.getElementById(
+        "username"
+    ).value = "";
+
+    document.getElementById(
+        "password"
+    ).value = "";
+
+}
+
+
+/* =========================================================
+   CLEAR REGISTER
+========================================================= */
+
+function clearRegister(){
+
+    document.getElementById(
+        "registerName"
+    ).value = "";
+
+    document.getElementById(
+        "registerEmail"
+    ).value = "";
+
+    document.getElementById(
+        "registerPhone"
+    ).value = "";
+
+    document.getElementById(
+        "registerLocation"
+    ).value = "";
+
+    document.getElementById(
+        "registerBlood"
+    ).value = "";
+
+    document.getElementById(
+        "registerUsername"
+    ).value = "";
+
+    document.getElementById(
+        "registerPassword"
+    ).value = "";
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showSection(id,element){
+
+    event.preventDefault();
+
+
+    document
+        .querySelectorAll(".section")
+        .forEach(
+            function(section){
+
+                section.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+
+    document
+        .querySelectorAll(".sidebar a")
+        .forEach(
+            function(link){
+
+                link.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    element.classList.add("active");
+
+
+    refreshAll();
+
+}
+
+
+/* =========================================================
+   OPEN DASHBOARD
+========================================================= */
+
+function openDashboard(){
+
+    document
+        .querySelectorAll(".section")
+        .forEach(
+            function(section){
+
+                section.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            "dashboard"
+        )
+        .classList.add("active");
+
+
+    document
+        .querySelectorAll(".sidebar a")
+        .forEach(
+            function(link){
+
+                link.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    document
+        .querySelector(".sidebar a")
+        .classList.add("active");
+
+
+    refreshAll();
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function loadProfile(){
+
+    const recipient =
+        currentRecipient();
+
+
+    if(!recipient){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "recipientWelcome"
+    ).textContent =
+        recipient.name;
+
+
+    document.getElementById(
+        "profileName"
+    ).value =
+        recipient.name || "";
+
+
+    document.getElementById(
+        "profileEmail"
+    ).value =
+        recipient.email || "";
+
+
+    document.getElementById(
+        "profilePhone"
+    ).value =
+        recipient.phone || "";
+
+
+    document.getElementById(
+        "profileLocation"
+    ).value =
+        recipient.location || "";
+
+
+    document.getElementById(
+        "profileBlood"
+    ).value =
+        recipient.blood || "";
+
+}
+
+
+function updateProfile(){
+
+    const recipient =
+        currentRecipient();
+
+
+    if(!recipient){
+
+        return;
+
+    }
+
+
+    const name =
+        document.getElementById(
+            "profileName"
+        ).value.trim();
+
+    const email =
+        document.getElementById(
+            "profileEmail"
+        ).value.trim();
+
+    const phone =
+        document.getElementById(
+            "profilePhone"
+        ).value.trim();
+
+    const location =
+        document.getElementById(
+            "profileLocation"
+        ).value.trim();
+
+    const blood =
+        document.getElementById(
+            "profileBlood"
+        ).value;
+
+
+    if(
+        !name ||
+        !email ||
+        !phone ||
+        !location ||
+        !blood
+    ){
+
+        alert(
+            "Please fill all profile fields."
+        );
+
+        return;
+
+    }
+
+
+    const db = getDB();
+
+
+    recipient.name = name;
+
+    recipient.email = email;
+
+    recipient.phone = phone;
+
+    recipient.location = location;
+
+    recipient.blood = blood;
+
+
+    saveDB(db);
+
+    loadProfile();
+
+    refreshAll();
+
+
+    alert(
+        "Profile updated successfully."
+    );
+
+}
+
+
+/* =========================================================
+   BLOOD REQUEST
+========================================================= */
+
+function submitBloodRequest(){
+
+    const recipient =
+        currentRecipient();
+
+
+    if(!recipient){
+
+        return;
+
+    }
+
+
+    const blood =
+        document.getElementById(
+            "requestBlood"
+        ).value;
+
+
+    const units =
+        Number(
+            document.getElementById(
+                "requestUnits"
+            ).value
+        );
+
+
+    const hospital =
+        document.getElementById(
+            "requestHospital"
+        ).value.trim();
+
+
+    const location =
+        document.getElementById(
+            "requestLocation"
+        ).value.trim();
+
+
+    const urgency =
+        document.getElementById(
+            "requestUrgency"
+        ).value;
+
+
+    if(
+        !blood ||
+        units <= 0 ||
+        !hospital ||
+        !location
+    ){
+
+        alert(
+            "Please fill all blood request fields."
+        );
+
+        return;
+
+    }
+
+
+    const db = getDB();
+
+
+    const request = {
+
+        id:
+            "REQ-" +
+            Date.now(),
+
+        recipientId:
+            recipient.id,
+
+        recipientName:
+            recipient.name,
+
+        recipientPhone:
+            recipient.phone,
+
+        recipientLocation:
+            recipient.location,
+
+        blood:blood,
+
+        units:units,
+
+        hospital:hospital,
+
+        location:location,
+
+        urgency:urgency,
+
+        status:"Pending",
+
+        donorId:"",
+
+        donorName:"",
+
+        donorPhone:"",
+
+        donorLocation:"",
+
+        donorBlood:"",
+
+        donorAcceptanceStatus:"",
+
+        adminStatus:"Pending",
+
+        staffStatus:"Pending",
+
+        createdAt:
+            new Date().toISOString(),
+
+        updatedAt:
+            new Date().toISOString()
+
+    };
+
+
+    db.requests.push(
+        request
+    );
+
+
+    /*
+       ADMIN NOTIFICATION
+    */
+
+    db.notifications.push({
+
+        id:
+            "NOT-" +
+            Date.now(),
+
+        role:"admin",
+
+        requestId:
+            request.id,
+
+        message:
+            "New blood request " +
+            request.id +
+            " submitted by " +
+            recipient.name,
+
+        date:
+            new Date().toLocaleString()
+
+    });
+
+
+    /*
+       STAFF NOTIFICATION
+    */
+
+    db.notifications.push({
+
+        id:
+            "NOT-" +
+            (Date.now()+1),
+
+        role:"staff",
+
+        requestId:
+            request.id,
+
+        message:
+            "New blood request " +
+            request.id +
+            " requires verification.",
+
+        date:
+            new Date().toLocaleString()
+
+    });
+
+
+    /*
+       DONOR NOTIFICATION
+    */
+
+    db.notifications.push({
+
+        id:
+            "NOT-" +
+            (Date.now()+2),
+
+        role:"donor",
+
+        blood:blood,
+
+        requestId:
+            request.id,
+
+        message:
+            "New " +
+            blood +
+            " blood request is available.",
+
+        date:
+            new Date().toLocaleString()
+
+    });
+
+
+    saveDB(db);
+
+
+    document.getElementById(
+        "requestBlood"
+    ).value = "";
+
+    document.getElementById(
+        "requestUnits"
+    ).value = "";
+
+    document.getElementById(
+        "requestHospital"
+    ).value = "";
+
+    document.getElementById(
+        "requestLocation"
+    ).value = "";
+
+    document.getElementById(
+        "requestUrgency"
+    ).value = "Normal";
+
+
+    refreshAll();
+
+
+    alert(
+        "Blood request submitted successfully."
+    );
+
+}
+
+
+/* =========================================================
+   GET CURRENT RECIPIENT REQUESTS
+========================================================= */
+
+function recipientRequests(){
+
+    const recipient =
+        currentRecipient();
+
+
+    if(!recipient){
+
+        return [];
+
+    }
+
+
+    return getDB()
+        .requests
+        .filter(
+            function(request){
+
+                return request.recipientId
+                    === recipient.id;
+
+            }
+        )
+        .sort(
+            function(a,b){
+
+                return new Date(b.createdAt)
+                    -
+                    new Date(a.createdAt);
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   REQUEST STATUS
+========================================================= */
+
+function renderStatus(){
+
+    const tbody =
+        document.getElementById(
+            "statusTableBody"
+        );
+
+
+    const requests =
+        recipientRequests();
+
+
+    if(!requests.length){
+
+        tbody.innerHTML = `
+            <tr>
+                <td
+                    colspan="9"
+                    class="empty">
+                    No blood requests found.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    tbody.innerHTML =
+        requests
+        .map(
+            function(request){
+
+                const donorText =
+                    request.donorName
+                    ?
+                    escapeHTML(
+                        request.donorName
+                    )
+                    :
+                    "Not matched";
+
+
+                let action = "";
+
+
+                if(
+                    request.status === "Pending" ||
+                    request.status === "Approved" ||
+                    request.status === "Donor Accepted"
+                ){
+
+                    action = `
+                        <button
+                            class="action-btn cancel"
+                            onclick="cancelRequest('${request.id}')">
+
+                            Cancel
+
+                        </button>
+                    `;
+
+                }
+
+
+                return `
+
+                    <tr>
+
+                        <td>
+                            ${escapeHTML(
+                                request.id
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                formatDate(
+                                    request.createdAt
+                                )
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                request.blood
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                request.units
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                request.hospital
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                request.urgency
+                            )}
+                        </td>
+
+                        <td>
+                            ${donorText}
+                        </td>
+
+                        <td
+                            class="${statusClass(
+                                request.status
+                            )}">
+
+                            ${escapeHTML(
+                                request.status
+                            )}
+
+                        </td>
+
+                        <td>
+                            ${action}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =========================================================
+   CANCEL REQUEST
+========================================================= */
+
+function cancelRequest(requestId){
+
+    const db =
+        getDB();
+
+
+    const request =
+        db.requests.find(
+            function(item){
+
+                return item.id === requestId;
+
+            }
+        );
+
+
+    if(!request){
+
+        return;
+
+    }
+
+
+    if(
+        request.status === "Completed"
+    ){
+
+        alert(
+            "Completed request cannot be cancelled."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !confirm(
+            "Cancel this blood request?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    request.status =
+        "Cancelled";
+
+
+    request.updatedAt =
+        new Date().toISOString();
+
+
+    db.notifications.push({
+
+        id:
+            "NOT-" +
+            Date.now(),
+
+        role:"admin",
+
+        requestId:
+            request.id,
+
+        message:
+            "Recipient cancelled blood request " +
+            request.id,
+
+        date:
+            new Date().toLocaleString()
+
+    });
+
+
+    db.notifications.push({
+
+        id:
+            "NOT-" +
+            (Date.now()+1),
+
+        role:"staff",
+
+        requestId:
+            request.id,
+
+        message:
+            "Blood request " +
+            request.id +
+            " was cancelled.",
+
+        date:
+            new Date().toLocaleString()
+
+    });
+
+
+    saveDB(db);
+
+    refreshAll();
+
+
+    alert(
+        "Blood request cancelled."
+    );
+
+}
+
+
+/* =========================================================
+   DONOR INFORMATION
+========================================================= */
+
+function renderDonorInfo(){
+
+    const container =
+        document.getElementById(
+            "donorInfo"
+        );
+
+
+    const requests =
+        recipientRequests();
+
+
+    const matched =
+        requests.filter(
+            function(request){
+
+                return request.donorId;
+
+            }
+        );
+
+
+    if(!matched.length){
+
+        container.innerHTML = `
+            <div class="empty">
+                No donor has accepted your request yet.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        matched
+        .map(
+            function(request){
+
+                return `
+
+                    <div
+                        class="info-box"
+                        style="margin-bottom:15px">
+
+                        <p>
+                            <b>Request ID:</b>
+                            ${escapeHTML(
+                                request.id
+                            )}
+                        </p>
+
+                        <p>
+                            <b>Donor Name:</b>
+                            ${escapeHTML(
+                                request.donorName
+                            )}
+                        </p>
+
+                        <p>
+                            <b>Blood Group:</b>
+                            ${escapeHTML(
+                                request.donorBlood
+                                ||
+                                request.blood
+                            )}
+                        </p>
+
+                        <p>
+                            <b>Phone:</b>
+                            ${escapeHTML(
+                                request.donorPhone
+                                || "-"
+                            )}
+                        </p>
+
+                        <p>
+                            <b>Location:</b>
+                            ${escapeHTML(
+                                request.donorLocation
+                                || "-"
+                            )}
+                        </p>
+
+                        <p>
+                            <b>Acceptance Status:</b>
+
+                            <span
+                                class="status-accepted">
+
+                                ${escapeHTML(
+                                    request
+                                    .donorAcceptanceStatus
+                                    ||
+                                    "Accepted"
+                                )}
+
+                            </span>
+
+                        </p>
+
+                        <p>
+                            <b>Request Status:</b>
+                            ${escapeHTML(
+                                request.status
+                            )}
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+function renderNotifications(){
+
+    const recipient =
+        currentRecipient();
+
+
+    if(!recipient){
+
+        return;
+
+    }
+
+
+    const list =
+        document.getElementById(
+            "notificationList"
+        );
+
+
+    const dashboardList =
+        document.getElementById(
+            "dashboardNotifications"
+        );
+
+
+    const db =
+        getDB();
+
+
+    const notifications =
+        db.notifications
+        .filter(
+            function(notification){
+
+                return (
+                    notification.role ===
+                    "recipient"
+                    &&
+                    (
+                        !notification.userId
+                        ||
+                        notification.userId
+                        ===
+                        recipient.id
+                    )
+                );
+
+            }
+        )
+        .sort(
+            function(a,b){
+
+                return new Date(b.date)
+                    -
+                    new Date(a.date);
+
+            }
+        );
+
+
+    if(!notifications.length){
+
+        list.innerHTML = `
+            <div class="empty">
+                No notifications yet.
+            </div>
+        `;
+
+
+        dashboardList.innerHTML = `
+            <div class="empty">
+                No new notifications.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        notifications
+        .map(
+            function(notification){
+
+                return `
+
+                    <div class="notification">
+
+                        <b>Notification</b>
+
+                        <br>
+
+                        ${escapeHTML(
+                            notification.message
+                        )}
+
+                        <br>
+
+                        <small>
+                            ${escapeHTML(
+                                notification.date
+                            )}
+                        </small>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+
+    dashboardList.innerHTML =
+        notifications
+        .slice(0,3)
+        .map(
+            function(notification){
+
+                return `
+
+                    <div class="notification">
+
+                        ${escapeHTML(
+                            notification.message
+                        )}
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+function renderHistory(){
+
+    const tbody =
+        document.getElementById(
+            "historyTableBody"
+        );
+
+
+    const requests =
+        recipientRequests();
+
+
+    if(!requests.length){
+
+        tbody.innerHTML = `
+            <tr>
+                <td
+                    colspan="5"
+                    class="empty">
+
+                    No request history found.
+
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    tbody.innerHTML =
+        requests
+        .map(
+            function(request){
+
+                return `
+
+                    <tr>
+
+                        <td>
+                            ${escapeHTML(
+                                formatDate(
+                                    request.createdAt
+                                )
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                request.blood
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                request.hospital
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                request.units
+                            )}
+                        </td>
+
+                        <td
+                            class="${statusClass(
+                                request.status
+                            )}">
+
+                            ${escapeHTML(
+                                request.status
+                            )}
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =========================================================
+   EMERGENCY REQUEST
+========================================================= */
+
+function submitEmergencyRequest(){
+
+    const recipient =
+        currentRecipient();
+
+
+    if(!recipient){
+
+        return;
+
+    }
+
+
+    const blood =
+        document.getElementById(
+            "emergencyBlood"
+        ).value;
+
+
+    const units =
+        Number(
+            document.getElementById(
+                "emergencyUnits"
+            ).value
+        );
+
+
+    const hospital =
+        document.getElementById(
+            "emergencyHospital"
+        ).value.trim();
+
+
+    const location =
+        document.getElementById(
+            "emergencyLocation"
+        ).value.trim();
+
+
+    if(
+        !blood ||
+        units <= 0 ||
+        !hospital ||
+        !location
+    ){
+
+        alert(
+            "Please fill all emergency request fields."
+        );
+
+        return;
+
+    }
+
+
+    const db =
+        getDB();
+
+
+    const request = {
+
+        id:
+            "REQ-" +
+            Date.now(),
+
+        recipientId:
+            recipient.id,
+
+        recipientName:
+            recipient.name,
+
+        recipientPhone:
+            recipient.phone,
+
+        recipientLocation:
+            recipient.location,
+
+        blood:blood,
+
+        units:units,
+
+        hospital:hospital,
+
+        location:location,
+
+        urgency:"Emergency",
+
+        status:"Pending",
+
+        donorId:"",
+
+        donorName:"",
+
+        donorPhone:"",
+
+        donorLocation:"",
+
+        donorBlood:"",
+
+        donorAcceptanceStatus:"",
+
+        adminStatus:"Pending",
+
+        staffStatus:"Pending",
+
+        createdAt:
+            new Date().toISOString(),
+
+        updatedAt:
+            new Date().toISOString()
+
+    };
+
+
+    db.requests.push(
+        request
+    );
+
+
+    /*
+       ADMIN
+    */
+
+    db.notifications.push({
+
+        id:
+            "NOT-" +
+            Date.now(),
+
+        role:"admin",
+
+        requestId:
+            request.id,
+
+        message:
+            "EMERGENCY blood request " +
+            request.id +
+            " submitted by " +
+            recipient.name,
+
+        date:
+            new Date().toLocaleString()
+
+    });
+
+
+    /*
+       STAFF
+    */
+
+    db.notifications.push({
+
+        id:
+            "NOT-" +
+            (Date.now()+1),
+
+        role:"staff",
+
+        requestId:
+            request.id,
+
+        message:
+            "EMERGENCY request " +
+            request.id +
+            " requires urgent processing.",
+
+        date:
+            new Date().toLocaleString()
+
+    });
+
+
+    /*
+       DONOR
+    */
+
+    db.notifications.push({
+
+        id:
+            "NOT-" +
+            (Date.now()+2),
+
+        role:"donor",
+
+        blood:blood,
+
+        requestId:
+            request.id,
+
+        message:
+            "EMERGENCY " +
+            blood +
+            " blood request is available.",
+
+        date:
+            new Date().toLocaleString()
+
+    });
+
+
+    saveDB(db);
+
+
+    document.getElementById(
+        "emergencyBlood"
+    ).value = "";
+
+    document.getElementById(
+        "emergencyUnits"
+    ).value = "";
+
+    document.getElementById(
+        "emergencyHospital"
+    ).value = "";
+
+    document.getElementById(
+        "emergencyLocation"
+    ).value = "";
+
+
+    refreshAll();
+
+
+    alert(
+        "Emergency blood request submitted successfully."
+    );
+
+}
+
+
+/* =========================================================
+   BLOOD ISSUE
+========================================================= */
+
+function renderBloodIssues(){
+
+    const recipient =
+        currentRecipient();
+
+
+    const container =
+        document.getElementById(
+            "bloodIssueList"
+        );
+
+
+    if(!recipient){
+
+        return;
+
+    }
+
+
+    const db =
+        getDB();
+
+
+    const issues =
+        db.bloodIssues.filter(
+            function(issue){
+
+                return issue.recipientId
+                    === recipient.id;
+
+            }
+        );
+
+
+    const completedRequests =
+        recipientRequests()
+        .filter(
+            function(request){
+
+                return request.status
+                    === "Completed";
+
+            }
+        );
+
+
+    if(
+        !issues.length &&
+        !completedRequests.length
+    ){
+
+        container.innerHTML = `
+            <div class="empty">
+                No blood issue record found.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    let html = "";
+
+
+    issues.forEach(
+        function(issue){
+
+            html += `
+
+                <div
+                    class="info-box"
+                    style="margin-bottom:15px">
+
+                    <p>
+                        <b>Request ID:</b>
+                        ${escapeHTML(
+                            issue.requestId
+                            || "-"
+                        )}
+                    </p>
+
+                    <p>
+                        <b>Blood Group:</b>
+                        ${escapeHTML(
+                            issue.blood
+                            || "-"
+                        )}
+                    </p>
+
+                    <p>
+                        <b>Issued Units:</b>
+                        ${escapeHTML(
+                            issue.units
+                            || 0
+                        )}
+                    </p>
+
+                    <p>
+                        <b>Blood Bank:</b>
+                        ${escapeHTML(
+                            issue.bloodBank
+                            || "-"
+                        )}
+                    </p>
+
+                    <p>
+
+                        <b>Issue Status:</b>
+
+                        <span
+                            class="${statusClass(
+                                issue.status
+                            )}">
+
+                            ${escapeHTML(
+                                issue.status
+                                ||
+                                "Pending"
+                            )}
+
+                        </span>
+
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    completedRequests.forEach(
+        function(request){
+
+            const alreadyShown =
+                issues.some(
+                    function(issue){
+
+                        return issue.requestId
+                            === request.id;
+
+                    }
+                );
+
+
+            if(!alreadyShown){
+
+                html += `
+
+                    <div
+                        class="info-box"
+                        style="margin-bottom:15px">
+
+                        <p>
+                            <b>Request ID:</b>
+                            ${escapeHTML(
+                                request.id
+                            )}
+                        </p>
+
+                        <p>
+                            <b>Blood Group:</b>
+                            ${escapeHTML(
+                                request.blood
+                            )}
+                        </p>
+
+                        <p>
+                            <b>Issued Units:</b>
+                            ${escapeHTML(
+                                request.units
+                            )}
+                        </p>
+
+                        <p>
+                            <b>Hospital:</b>
+                            ${escapeHTML(
+                                request.hospital
+                            )}
+                        </p>
+
+                        <p>
+
+                            <b>Issue Status:</b>
+
+                            <span
+                                class="status-completed">
+
+                                Completed
+
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+    );
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard(){
+
+    const recipient =
+        currentRecipient();
+
+
+    if(!recipient){
+
+        return;
+
+    }
+
+
+    const requests =
+        recipientRequests();
+
+
+    const pending =
+        requests.filter(
+            function(request){
+
+                return request.status
+                    === "Pending";
+
+            }
+        ).length;
+
+
+    const approved =
+        requests.filter(
+            function(request){
+
+                return (
+                    request.status ===
+                    "Approved"
+                    ||
+                    request.status ===
+                    "Donor Accepted"
+                );
+
+            }
+        ).length;
+
+
+    const completed =
+        requests.filter(
+            function(request){
+
+                return request.status
+                    === "Completed";
+
+            }
+        ).length;
+
+
+    const cancelled =
+        requests.filter(
+            function(request){
+
+                return request.status
+                    === "Cancelled";
+
+            }
+        ).length;
+
+
+    const emergency =
+        requests.filter(
+            function(request){
+
+                return (
+                    request.urgency ===
+                    "Emergency"
+                    &&
+                    request.status !==
+                    "Completed"
+                    &&
+                    request.status !==
+                    "Cancelled"
+                );
+
+            }
+        ).length;
+
+
+    const matched =
+        requests.filter(
+            function(request){
+
+                return request.donorId;
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "totalRequests"
+    ).textContent =
+        requests.length;
+
+
+    document.getElementById(
+        "pendingRequests"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "approvedRequests"
+    ).textContent =
+        approved;
+
+
+    document.getElementById(
+        "completedRequests"
+    ).textContent =
+        completed;
+
+
+    document.getElementById(
+        "cancelledRequests"
+    ).textContent =
+        cancelled;
+
+
+    document.getElementById(
+        "matchedDonors"
+    ).textContent =
+        matched;
+
+
+    document.getElementById(
+        "emergencyCount"
+    ).textContent =
+        emergency;
+
+}
+
+
+/* =========================================================
+   REFRESH ALL
+========================================================= */
+
+function refreshAll(){
+
+    if(!currentRecipient()){
+
+        return;
+
+    }
+
+
+    loadProfile();
+
+    updateDashboard();
+
+    renderStatus();
+
+    renderDonorInfo();
+
+    renderNotifications();
+
+    renderHistory();
+
+    renderBloodIssues();
+
+}
+
+
+/* =========================================================
+   DATE FORMAT
+========================================================= */
+
+function formatDate(value){
+
+    if(!value){
+
+        return "-";
+
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return value;
+
+    }
+
+
+    return date.toLocaleDateString();
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        /*
+          Always start on Login.
+
+          Account data stays saved.
+          Login username/password fields
+          are always empty.
+        */
+
+        localStorage.removeItem(
+            CURRENT_RECIPIENT_KEY
+        );
+
+
+        document.getElementById(
+            "loginPage"
+        ).style.display =
+            "flex";
+
+
+        document.getElementById(
+            "registerPage"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "dashboardPage"
+        ).style.display =
+            "none";
+
+
+        clearLogin();
+
+        clearRegister();
+
+    }
+);
+
 </script>
 
 </body>
